@@ -13,6 +13,6 @@
 }
 
 - (void)initializeState;
-- (TiMessagesTableViewController*) controller;
+- (void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date;
 
 @end

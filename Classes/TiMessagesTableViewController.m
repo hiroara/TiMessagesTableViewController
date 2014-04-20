@@ -23,10 +23,7 @@ ComArihiroMessagestableModule *proxy;
 @synthesize senderColor;
 @synthesize timestampColor;
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return self.messages.count;
-}
+#pragma mark lifecycle
 
 - (void)viewDidLoad
 {
@@ -39,14 +36,14 @@ ComArihiroMessagestableModule *proxy;
     outgoingBubbleColor = [UIColor js_bubbleLightGrayColor];
     senderColor = [UIColor lightGrayColor];
     timestampColor = [UIColor lightGrayColor];
-
+    
     [super viewDidLoad];
-
+    
     self.messageInputView.image = [[[ComArihiroMessagestableModule getShared] getAssetImage:@"input-bar-flat.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)
-        resizingMode:UIImageResizingModeStretch];
-
+                                                                                                                                  resizingMode:UIImageResizingModeStretch];
+    
     [self setBackgroundColor:[UIColor whiteColor]];
-
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
                                                                                            target:self
                                                                                            action:@selector(buttonPressed:)];
@@ -56,6 +53,22 @@ ComArihiroMessagestableModule *proxy;
 {
     [super viewWillAppear:animated];
     [self scrollToBottomAnimated:NO];
+}
+
+
+#pragma mark Public
+
+-(void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
+{
+    [self didSendText:text fromSender:sender onDate:date];
+}
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.messages.count;
 }
 
 

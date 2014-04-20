@@ -20,4 +20,6 @@
 @property (nonatomic, strong) UIColor *senderColor;
 @property (nonatomic, strong) UIColor *timestampColor;
 
+- (void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date;
+
 @end

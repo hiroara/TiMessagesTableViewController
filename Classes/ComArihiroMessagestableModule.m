@@ -17,7 +17,7 @@ static ComArihiroMessagestableModule *_shared;
 
 #pragma mark Class accessor
 
-+(ComArihiroMessagestableModule *)getShared
++ (ComArihiroMessagestableModule *)getShared
 {
     return _shared;
 }
@@ -25,20 +25,20 @@ static ComArihiroMessagestableModule *_shared;
 #pragma mark Internal
 
 // this is generated for your module, please do not change it
--(id)moduleGUID
+- (id)moduleGUID
 {
   return @"1797cf60-0a95-490c-8879-061bf1ee1b8f";
 }
 
 // this is generated for your module, please do not change it
--(NSString*)moduleId
+- (NSString *)moduleId
 {
   return @"com.arihiro.messagestable";
 }
 
 #pragma mark Lifecycle
 
--(void)startup
+- (void)startup
 {
   // this method is called when the module is first loaded
   // you *must* call the superclass
@@ -48,7 +48,7 @@ static ComArihiroMessagestableModule *_shared;
   NSLog(@"[INFO] %@ loaded",self);
 }
 
--(void)shutdown:(id)sender
+- (void)shutdown:(id)sender
 {
   // this method is called when the module is being unloaded
   // typically this is during shutdown. make sure you don't do too
@@ -60,7 +60,7 @@ static ComArihiroMessagestableModule *_shared;
 
 #pragma mark Internal Memory Management
 
--(void)didReceiveMemoryWarning:(NSNotification*)notification
+- (void)didReceiveMemoryWarning:(NSNotification *)notification
 {
   // optionally release any resources that can be dynamically
   // reloaded once memory is available - such as caches
@@ -69,7 +69,7 @@ static ComArihiroMessagestableModule *_shared;
 
 #pragma mark Listener Notifications
 
--(void)_listenerAdded:(NSString *)type count:(int)count
+- (void)_listenerAdded:(NSString *)type count:(int)count
 {
   if (count == 1 && [type isEqualToString:@"my_event"])
   {
@@ -78,7 +78,7 @@ static ComArihiroMessagestableModule *_shared;
   }
 }
 
--(void)_listenerRemoved:(NSString *)type count:(int)count
+- (void)_listenerRemoved:(NSString *)type count:(int)count
 {
   if (count == 0 && [type isEqualToString:@"my_event"])
   {

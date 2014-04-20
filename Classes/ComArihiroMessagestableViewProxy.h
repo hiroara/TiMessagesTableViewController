@@ -10,6 +10,6 @@
 {
 }
 
--(void)sendMessage:(id)args;
+- (void)sendMessage:(id)args;
 
 @end

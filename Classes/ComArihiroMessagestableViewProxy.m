@@ -12,16 +12,6 @@
 
 @implementation ComArihiroMessagestableViewProxy
 
-TiMessagesTableViewController *controller;
-
-- (TiMessagesTableViewController *)controller
-{
-    if (controller == nil) {
-        controller = [(ComArihiroMessagestableView *)[self view] controller];
-    }
-    return controller;
-}
-
 - (void)sendMessage:(id)args
 {
     ENSURE_UI_THREAD(sendMessage, args);
@@ -35,12 +25,7 @@ TiMessagesTableViewController *controller;
     ENSURE_ARG_FOR_KEY(sender, args, @"sender", NSString);
     ENSURE_ARG_FOR_KEY(date, args, @"date", NSDate);
     
-    NSLog(@"controller: %@", [self controller]);
-
-    [[self controller].delegate didSendText:[text js_stringByTrimingWhitespace]
-                                 fromSender:sender
-                                     onDate:date];
-
+    [(ComArihiroMessagestableView *)[self view] addMessage:text sender:sender date:date];
 }
 
 @end

@@ -13,6 +13,6 @@
 
 @interface TiBubbleImagesViewFactory : NSObject
 
-+ (UIImageView *)bubbleImageViewForType:(JSBubbleMessageType *)type color:(UIColor *)color;
++ (UIImageView *)bubbleImageViewForType:(JSBubbleMessageType)type color:(UIColor *)color;
 
 @end

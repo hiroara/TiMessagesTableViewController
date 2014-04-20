@@ -13,17 +13,12 @@
 UIView *view;
 TiMessagesTableViewController *vc;
 
--(void)initializeState
+- (void)initializeState
 {
     NSLog(@"HOGEHOGE! view:%@", self.view);
 }
 
--(TiMessagesTableViewController*) controller
-{
-    return vc;
-}
-
--(UIView*)view
+- (UIView *)view
 {
     if (view == nil) {
         vc = [[TiMessagesTableViewController alloc] init];
@@ -36,70 +31,76 @@ TiMessagesTableViewController *vc;
     return view;
 }
 
--(void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
+- (void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
 {
     if (view != nil) {
         [TiUtils setView:view positionRect:bounds];
     }
 }
 
--(void)setBackgroundColor_:(id)argColor
+- (void)setBackgroundColor_:(id)argColor
 {
     if (vc != nil) {
         [vc setBackgroundColor:[[TiUtils colorValue:argColor] _color]];
     }
 }
 
--(void)setPlaceHolder_:(id)argPlaceHolder
+- (void)setPlaceHolder_:(id)argPlaceHolder
 {
     if(vc != nil) {
         vc.messageInputView.textView.placeHolder = [TiUtils stringValue:argPlaceHolder];
     }
 }
 
--(void)setSender_:(id)argSender
+- (void)setSender_:(id)argSender
 {
     if(vc != nil) {
         vc.sender = [TiUtils stringValue:argSender];
     }
 }
 
--(void)setIncomingColor_:(id)argColor
+- (void)setIncomingColor_:(id)argColor
 {
     if (vc != nil) {
         vc.incomingColor = [[TiUtils colorValue:argColor] _color];
     }
 }
--(void)setIncomingBackgroundColor_:(id)argColor
+- (void)setIncomingBackgroundColor_:(id)argColor
 {
     if (vc != nil) {
         vc.incomingBubbleColor = [[TiUtils colorValue:argColor] _color];
     }
 }
--(void)setOutgoingColor_:(id)argColor
+- (void)setOutgoingColor_:(id)argColor
 {
     if (vc != nil) {
         vc.outgoingColor = [[TiUtils colorValue:argColor] _color];
     }
 }
--(void)setOutgoingBackgroundColor_:(id)argColor
+- (void)setOutgoingBackgroundColor_:(id)argColor
 {
     if (vc != nil) {
         vc.outgoingBubbleColor = [[TiUtils colorValue:argColor] _color];
     }
 }
--(void)setSenderColor_:(id)argColor
+- (void)setSenderColor_:(id)argColor
 {
     if (vc != nil) {
         vc.senderColor = [[TiUtils colorValue:argColor] _color];
     }
 }
--(void)setTimestampColor_:(id)argColor
+- (void)setTimestampColor_:(id)argColor
 {
     if (vc != nil) {
         vc.timestampColor = [[TiUtils colorValue:argColor] _color];
     }
 }
+
+- (void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
+{
+    [vc addMessage:text sender:sender date:date];
+}
+
 
 
 @end
