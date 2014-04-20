@@ -10,11 +10,13 @@
 #import "JSMessage.h"
 #import "TiBubbleImagesViewFactory.h"
 #import "ComArihiroMessagestableModule.h"
+#import "ComArihiroMessagestableViewProxy.h"
 
 ComArihiroMessagestableModule *proxy;
 
 @implementation TiMessagesTableViewController
 
+@synthesize proxy;
 @synthesize messages;
 @synthesize incomingColor;
 @synthesize incomingBubbleColor;
@@ -53,14 +55,31 @@ ComArihiroMessagestableModule *proxy;
 {
     [super viewWillAppear:animated];
     [self scrollToBottomAnimated:NO];
+
+    NSDictionary *eventObj = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              self.sender, @"sender",
+                              nil];
+    [proxy fireEvent:@"opened" withObject:eventObj];
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    NSDictionary *eventObj = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              self.sender, @"sender",
+                              nil];
+    [proxy fireEvent:@"closed" withObject:eventObj];
+}
+
 
 
 #pragma mark Public
 
 -(void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
 {
-    [self didSendText:text fromSender:sender onDate:date];
+    JSMessage* message = [[JSMessage alloc] initWithText:text sender:sender date:date];
+    [messages addObject:message];
+    [self finishSend];
+    [self scrollToBottomAnimated:YES];
 }
 
 
@@ -84,10 +103,12 @@ ComArihiroMessagestableModule *proxy;
  *  @param date   The date and time at which the message was sent.
  */
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
-    JSMessage* message = [[JSMessage alloc] initWithText:text sender:sender date:date];
-    [messages addObject:message];
-    [self finishSend];
-    [self scrollToBottomAnimated:YES];
+    NSDictionary *eventObj = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              text, @"text",
+                              sender, @"sender",
+                              date, @"date",
+                              nil];
+    [proxy fireEvent:@"send" withObject:eventObj];
 }
 
 /**
@@ -100,7 +121,7 @@ ComArihiroMessagestableModule *proxy;
  */
 - (JSBubbleMessageType)messageTypeForRowAtIndexPath:(NSIndexPath *)indexPath {
     JSMessage *message = [messages objectAtIndex:indexPath.row];
-    return message.sender == self.sender ? JSBubbleMessageTypeOutgoing : JSBubbleMessageTypeIncoming;
+    return [message.sender isEqualToString:self.sender] ? JSBubbleMessageTypeOutgoing : JSBubbleMessageTypeIncoming;
 }
 
 /**

@@ -22,6 +22,7 @@ TiMessagesTableViewController *vc;
 {
     if (view == nil) {
         vc = [[TiMessagesTableViewController alloc] init];
+        vc.proxy = (ComArihiroMessagestableViewProxy *)[self proxy];
         view = vc.view;
         vc.tableView.backgroundColor = [UIColor redColor];
 

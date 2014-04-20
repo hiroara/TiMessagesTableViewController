@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "JSMessagesViewController.h"
-@class ComArihiroMessagestableModule;
+
+@class ComArihiroMessagestableViewProxy;
 
 @interface TiMessagesTableViewController : JSMessagesViewController<JSMessagesViewDelegate, JSMessagesViewDataSource>
+
+@property (nonatomic, weak) ComArihiroMessagestableViewProxy *proxy;
 
 @property (nonatomic, strong) NSMutableArray *messages;
 @property (nonatomic, strong) UIColor *incomingColor;
