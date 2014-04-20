@@ -1,0 +1,673 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		24416B8111C4CA220047AFDD /* Build & Test */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 24416B8A11C4CA520047AFDD /* Build configuration list for PBXAggregateTarget "Build & Test" */;
+			buildPhases = (
+				24416B8011C4CA220047AFDD /* ShellScript */,
+			);
+			dependencies = (
+				24416B8511C4CA280047AFDD /* PBXTargetDependency */,
+			);
+			name = "Build & Test";
+			productName = "Build & test";
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		24DD6CF91134B3F500162E58 /* ComArihiroMessagestableModule.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DD6CF71134B3F500162E58 /* ComArihiroMessagestableModule.h */; };
+		24DD6CFA1134B3F500162E58 /* ComArihiroMessagestableModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DD6CF81134B3F500162E58 /* ComArihiroMessagestableModule.m */; };
+		24DE9E1111C5FE74003F90F6 /* ComArihiroMessagestableModuleAssets.h in Headers */ = {isa = PBXBuildFile; fileRef = 24DE9E0F11C5FE74003F90F6 /* ComArihiroMessagestableModuleAssets.h */; };
+		24DE9E1211C5FE74003F90F6 /* ComArihiroMessagestableModuleAssets.m in Sources */ = {isa = PBXBuildFile; fileRef = 24DE9E1011C5FE74003F90F6 /* ComArihiroMessagestableModuleAssets.m */; };
+		32E1EFC8FC424A8A96A48E44 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCFE22445B934A5BB2B3DFCE /* libPods.a */; };
+		AA747D9F0F9514B9006C5449 /* ComArihiroMessagestable_Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = AA747D9E0F9514B9006C5449 /* ComArihiroMessagestable_Prefix.pch */; };
+		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
+		F54220F818F9900A0036F690 /* ComArihiroMessagestableView.h in Headers */ = {isa = PBXBuildFile; fileRef = F54220F418F9900A0036F690 /* ComArihiroMessagestableView.h */; };
+		F54220F918F9900A0036F690 /* ComArihiroMessagestableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F54220F518F9900A0036F690 /* ComArihiroMessagestableView.m */; };
+		F54220FA18F9900A0036F690 /* ComArihiroMessagestableViewProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = F54220F618F9900A0036F690 /* ComArihiroMessagestableViewProxy.h */; };
+		F54220FB18F9900A0036F690 /* ComArihiroMessagestableViewProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = F54220F718F9900A0036F690 /* ComArihiroMessagestableViewProxy.m */; };
+		F54220FE18F993A20036F690 /* TiMessagesTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = F54220FC18F993A20036F690 /* TiMessagesTableViewController.h */; };
+		F54220FF18F993A20036F690 /* TiMessagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F54220FD18F993A20036F690 /* TiMessagesTableViewController.m */; };
+		F55C3D1718FD93F70021AB8C /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F55C3D1618FD93F70021AB8C /* CoreFoundation.framework */; };
+		F55C3D1D18FD93F70021AB8C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F55C3D1B18FD93F70021AB8C /* InfoPlist.strings */; };
+		F5F76D5E19024731000B83F1 /* TiBubbleImagesViewFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F76D5C19024731000B83F1 /* TiBubbleImagesViewFactory.h */; };
+		F5F76D5F19024731000B83F1 /* TiBubbleImagesViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F76D5D19024731000B83F1 /* TiBubbleImagesViewFactory.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		24416B8411C4CA280047AFDD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0867D690FE84028FC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = TiMessagesTableViewController;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		24DD6CF71134B3F500162E58 /* ComArihiroMessagestableModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComArihiroMessagestableModule.h; path = Classes/ComArihiroMessagestableModule.h; sourceTree = "<group>"; };
+		24DD6CF81134B3F500162E58 /* ComArihiroMessagestableModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComArihiroMessagestableModule.m; path = Classes/ComArihiroMessagestableModule.m; sourceTree = "<group>"; };
+		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
+		24DE9E0F11C5FE74003F90F6 /* ComArihiroMessagestableModuleAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComArihiroMessagestableModuleAssets.h; path = Classes/ComArihiroMessagestableModuleAssets.h; sourceTree = "<group>"; };
+		24DE9E1011C5FE74003F90F6 /* ComArihiroMessagestableModuleAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComArihiroMessagestableModuleAssets.m; path = Classes/ComArihiroMessagestableModuleAssets.m; sourceTree = "<group>"; };
+		7ADA6CC60F104234946FBBA2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		A3FE78EC18FAC77300CEADBE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A3FE78EE18FAC77B00CEADBE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		AA747D9E0F9514B9006C5449 /* ComArihiroMessagestable_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComArihiroMessagestable_Prefix.pch; sourceTree = SOURCE_ROOT; };
+		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CCFE22445B934A5BB2B3DFCE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libPods.a; path = "Build/Products/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
+		F5178AB018FD85AD00794754 /* libComArihiroMessagestable.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libComArihiroMessagestable.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F54220F418F9900A0036F690 /* ComArihiroMessagestableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComArihiroMessagestableView.h; path = Classes/ComArihiroMessagestableView.h; sourceTree = "<group>"; };
+		F54220F518F9900A0036F690 /* ComArihiroMessagestableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComArihiroMessagestableView.m; path = Classes/ComArihiroMessagestableView.m; sourceTree = "<group>"; };
+		F54220F618F9900A0036F690 /* ComArihiroMessagestableViewProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComArihiroMessagestableViewProxy.h; path = Classes/ComArihiroMessagestableViewProxy.h; sourceTree = "<group>"; };
+		F54220F718F9900A0036F690 /* ComArihiroMessagestableViewProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComArihiroMessagestableViewProxy.m; path = Classes/ComArihiroMessagestableViewProxy.m; sourceTree = "<group>"; };
+		F54220FC18F993A20036F690 /* TiMessagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiMessagesTableViewController.h; path = Classes/TiMessagesTableViewController.h; sourceTree = "<group>"; };
+		F54220FD18F993A20036F690 /* TiMessagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiMessagesTableViewController.m; path = Classes/TiMessagesTableViewController.m; sourceTree = "<group>"; };
+		F55C3D1618FD93F70021AB8C /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		F55C3D1A18FD93F70021AB8C /* TiMessagesTableViewController Bundle-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TiMessagesTableViewController Bundle-Info.plist"; sourceTree = "<group>"; };
+		F55C3D1C18FD93F70021AB8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F55C3D1E18FD93F70021AB8C /* TiMessagesTableViewController Bundle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TiMessagesTableViewController Bundle-Prefix.pch"; sourceTree = "<group>"; };
+		F59EE6521902D8E0004DAD8D /* TiMessagesTableViewController Bundle.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TiMessagesTableViewController Bundle.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5F76D5C19024731000B83F1 /* TiBubbleImagesViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiBubbleImagesViewFactory.h; path = Classes/TiBubbleImagesViewFactory.h; sourceTree = "<group>"; };
+		F5F76D5D19024731000B83F1 /* TiBubbleImagesViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiBubbleImagesViewFactory.m; path = Classes/TiBubbleImagesViewFactory.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2AAC07C0554694100DB518D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */,
+				32E1EFC8FC424A8A96A48E44 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F55C3D1218FD93F70021AB8C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F55C3D1718FD93F70021AB8C /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0867D691FE84028FC02AAC07 /* TiMessagesTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AEFE84172EC02AAC07 /* Classes */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				F55C3D1818FD93F70021AB8C /* TiMessagesTableViewController Bundle */,
+				F5178AB118FD865600794754 /* Products */,
+				0867D69AFE84028FC02AAC07 /* Frameworks */,
+				7ADA6CC60F104234946FBBA2 /* Pods.xcconfig */,
+				F59EE6521902D8E0004DAD8D /* TiMessagesTableViewController Bundle.bundle */,
+			);
+			name = TiMessagesTableViewController;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A3FE78EE18FAC77B00CEADBE /* QuartzCore.framework */,
+				A3FE78EC18FAC77300CEADBE /* AudioToolbox.framework */,
+				AACBBE490F95108600F1A2B1 /* Foundation.framework */,
+				CCFE22445B934A5BB2B3DFCE /* libPods.a */,
+				F55C3D1618FD93F70021AB8C /* CoreFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F54220F418F9900A0036F690 /* ComArihiroMessagestableView.h */,
+				F54220F518F9900A0036F690 /* ComArihiroMessagestableView.m */,
+				F54220F618F9900A0036F690 /* ComArihiroMessagestableViewProxy.h */,
+				F54220F718F9900A0036F690 /* ComArihiroMessagestableViewProxy.m */,
+				24DE9E0F11C5FE74003F90F6 /* ComArihiroMessagestableModuleAssets.h */,
+				24DE9E1011C5FE74003F90F6 /* ComArihiroMessagestableModuleAssets.m */,
+				24DD6CF71134B3F500162E58 /* ComArihiroMessagestableModule.h */,
+				24DD6CF81134B3F500162E58 /* ComArihiroMessagestableModule.m */,
+				F54220FC18F993A20036F690 /* TiMessagesTableViewController.h */,
+				F54220FD18F993A20036F690 /* TiMessagesTableViewController.m */,
+				F5F76D5C19024731000B83F1 /* TiBubbleImagesViewFactory.h */,
+				F5F76D5D19024731000B83F1 /* TiBubbleImagesViewFactory.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				AA747D9E0F9514B9006C5449 /* ComArihiroMessagestable_Prefix.pch */,
+				24DD6D1B1134B66800162E58 /* titanium.xcconfig */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		F5178AB118FD865600794754 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F5178AB018FD85AD00794754 /* libComArihiroMessagestable.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F55C3D1818FD93F70021AB8C /* TiMessagesTableViewController Bundle */ = {
+			isa = PBXGroup;
+			children = (
+				F55C3D1918FD93F70021AB8C /* Supporting Files */,
+			);
+			path = "TiMessagesTableViewController Bundle";
+			sourceTree = "<group>";
+		};
+		F55C3D1918FD93F70021AB8C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F55C3D1A18FD93F70021AB8C /* TiMessagesTableViewController Bundle-Info.plist */,
+				F55C3D1B18FD93F70021AB8C /* InfoPlist.strings */,
+				F55C3D1E18FD93F70021AB8C /* TiMessagesTableViewController Bundle-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		D2AAC07A0554694100DB518D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA747D9F0F9514B9006C5449 /* ComArihiroMessagestable_Prefix.pch in Headers */,
+				F54220FA18F9900A0036F690 /* ComArihiroMessagestableViewProxy.h in Headers */,
+				24DD6CF91134B3F500162E58 /* ComArihiroMessagestableModule.h in Headers */,
+				F5F76D5E19024731000B83F1 /* TiBubbleImagesViewFactory.h in Headers */,
+				F54220FE18F993A20036F690 /* TiMessagesTableViewController.h in Headers */,
+				24DE9E1111C5FE74003F90F6 /* ComArihiroMessagestableModuleAssets.h in Headers */,
+				F54220F818F9900A0036F690 /* ComArihiroMessagestableView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		D2AAC07D0554694100DB518D /* TiMessagesTableViewController */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "TiMessagesTableViewController" */;
+			buildPhases = (
+				D8FD722CBF9C4387A3D3D0E2 /* Check Pods Manifest.lock */,
+				D2AAC07A0554694100DB518D /* Headers */,
+				D2AAC07B0554694100DB518D /* Sources */,
+				D2AAC07C0554694100DB518D /* Frameworks */,
+				87FBB67434684609BB327CC6 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TiMessagesTableViewController;
+			productName = TiMessagesTableViewController;
+			productReference = F5178AB018FD85AD00794754 /* libComArihiroMessagestable.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F55C3D1418FD93F70021AB8C /* TiMessagesTableViewController Bundle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F55C3D1F18FD93F70021AB8C /* Build configuration list for PBXNativeTarget "TiMessagesTableViewController Bundle" */;
+			buildPhases = (
+				F55C3D1118FD93F70021AB8C /* Sources */,
+				F55C3D1218FD93F70021AB8C /* Frameworks */,
+				F55C3D1318FD93F70021AB8C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "TiMessagesTableViewController Bundle";
+			productName = "TiMessagesTableViewController Bundle";
+			productReference = F59EE6521902D8E0004DAD8D /* TiMessagesTableViewController Bundle.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+			};
+			buildConfigurationList = 1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "TiMessagesTableViewController" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				en,
+			);
+			mainGroup = 0867D691FE84028FC02AAC07 /* TiMessagesTableViewController */;
+			productRefGroup = 0867D691FE84028FC02AAC07 /* TiMessagesTableViewController */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2AAC07D0554694100DB518D /* TiMessagesTableViewController */,
+				24416B8111C4CA220047AFDD /* Build & Test */,
+				F55C3D1418FD93F70021AB8C /* TiMessagesTableViewController Bundle */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F55C3D1318FD93F70021AB8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F55C3D1D18FD93F70021AB8C /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		24416B8011C4CA220047AFDD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here\n\npython \"${TITANIUM_SDK}/titanium.py\" run --dir=\"${PROJECT_DIR}\"\nexit $?\n";
+		};
+		87FBB67434684609BB327CC6 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"";
+			showEnvVarsInLog = 0;
+		};
+		D8FD722CBF9C4387A3D3D0E2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2AAC07B0554694100DB518D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F54220F918F9900A0036F690 /* ComArihiroMessagestableView.m in Sources */,
+				F54220FF18F993A20036F690 /* TiMessagesTableViewController.m in Sources */,
+				F5F76D5F19024731000B83F1 /* TiBubbleImagesViewFactory.m in Sources */,
+				24DD6CFA1134B3F500162E58 /* ComArihiroMessagestableModule.m in Sources */,
+				24DE9E1211C5FE74003F90F6 /* ComArihiroMessagestableModuleAssets.m in Sources */,
+				F54220FB18F9900A0036F690 /* ComArihiroMessagestableViewProxy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F55C3D1118FD93F70021AB8C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		24416B8511C4CA280047AFDD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2AAC07D0554694100DB518D /* TiMessagesTableViewController */;
+			targetProxy = 24416B8411C4CA280047AFDD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F55C3D1B18FD93F70021AB8C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F55C3D1C18FD93F70021AB8C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB921F08733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7ADA6CC60F104234946FBBA2 /* Pods.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DSTROOT = /tmp/ComArihiroMessagestable.dst;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ComArihiroMessagestable_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "TI_VERSION=$(TI_VERSION)";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				INSTALL_PATH = /usr/local/lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)",
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_CFLAGS = (
+					"-DDEBUG",
+					"-DTI_POST_1_2",
+				);
+				OTHER_LDFLAGS = (
+					"-L$(SRCROOT)/build/Products/Release-iphoneos",
+					"-ObjC",
+				);
+				PRODUCT_NAME = ComArihiroMessagestable;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				RUN_CLANG_STATIC_ANALYZER = NO;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(TITANIUM_HEADER_SEARCH_PATHS) ${PODS_ROOT}/Headers ${PODS_ROOT}/Headers/JSQSystemSoundPlayer ${PODS_ROOT}/Headers/JSMessagesViewController";
+			};
+			name = Debug;
+		};
+		1DEB922008733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7ADA6CC60F104234946FBBA2 /* Pods.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DSTROOT = /tmp/ComArihiroMessagestable.dst;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ComArihiroMessagestable_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "TI_VERSION=$(TI_VERSION)";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				INSTALL_PATH = /usr/local/lib;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(SRCROOT)",
+					"$(inherited)",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_CFLAGS = "-DTI_POST_1_2";
+				OTHER_LDFLAGS = (
+					"-L$(SRCROOT)/build/Products/Release-iphoneos",
+					"-ObjC",
+				);
+				PRODUCT_NAME = ComArihiroMessagestable;
+				RUN_CLANG_STATIC_ANALYZER = NO;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "$(TITANIUM_HEADER_SEARCH_PATHS) ${PODS_ROOT}/Headers ${PODS_ROOT}/Headers/JSQSystemSoundPlayer ${PODS_ROOT}/Headers/JSMessagesViewController";
+			};
+			name = Release;
+		};
+		1DEB922308733DC00010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DSTROOT = /tmp/ComArihiroMessagestable.dst;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ComArihiroMessagestable_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "TI_VERSION=$(TI_VERSION)";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				INSTALL_PATH = /usr/local/lib;
+				OTHER_CFLAGS = (
+					"-DDEBUG",
+					"-DTI_POST_1_2",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = ComArihiroMessagestable;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				RUN_CLANG_STATIC_ANALYZER = NO;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		1DEB922408733DC00010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DSTROOT = /tmp/ComArihiroMessagestable.dst;
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ComArihiroMessagestable_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = "TI_VERSION=$(TI_VERSION)";
+				GCC_TREAT_WARNINGS_AS_ERRORS = NO;
+				GCC_VERSION = "";
+				GCC_WARN_ABOUT_RETURN_TYPE = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = NO;
+				GCC_WARN_UNUSED_VARIABLE = NO;
+				INSTALL_PATH = /usr/local/lib;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				OTHER_CFLAGS = "-DTI_POST_1_2";
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = ComArihiroMessagestable;
+				RUN_CLANG_STATIC_ANALYZER = NO;
+				SDKROOT = iphoneos;
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Release;
+		};
+		24416B8211C4CA220047AFDD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = "Build & test";
+			};
+			name = Debug;
+		};
+		24416B8311C4CA220047AFDD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24DD6D1B1134B66800162E58 /* titanium.xcconfig */;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = "Build & test";
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		F55C3D2018FD93F70021AB8C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TiMessagesTableViewController Bundle/TiMessagesTableViewController Bundle-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "TiMessagesTableViewController Bundle/TiMessagesTableViewController Bundle-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos7.1;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		F55C3D2118FD93F70021AB8C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TiMessagesTableViewController Bundle/TiMessagesTableViewController Bundle-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "TiMessagesTableViewController Bundle/TiMessagesTableViewController Bundle-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos7.1;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB921E08733DC00010E9CD /* Build configuration list for PBXNativeTarget "TiMessagesTableViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB921F08733DC00010E9CD /* Debug */,
+				1DEB922008733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB922208733DC00010E9CD /* Build configuration list for PBXProject "TiMessagesTableViewController" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB922308733DC00010E9CD /* Debug */,
+				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		24416B8A11C4CA520047AFDD /* Build configuration list for PBXAggregateTarget "Build & Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				24416B8211C4CA220047AFDD /* Debug */,
+				24416B8311C4CA220047AFDD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F55C3D1F18FD93F70021AB8C /* Build configuration list for PBXNativeTarget "TiMessagesTableViewController Bundle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F55C3D2018FD93F70021AB8C /* Debug */,
+				F55C3D2118FD93F70021AB8C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}

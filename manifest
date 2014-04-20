@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 0.1
+apiversion: 2
+description: My module
+author: Your Name
+license: Specify your license
+copyright: Copyright (c) 2014 by Your Company
+
+
+# these should not be edited
+name: TiMessagesTableViewController
+moduleid: com.arihiro.messagestable
+guid: 1797cf60-0a95-490c-8879-061bf1ee1b8f
+platform: iphone
+minsdk: 3.2.2.GA
