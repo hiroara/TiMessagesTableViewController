@@ -4,3 +4,6 @@ build
 *.zip
 xcuserdata/
 project.xcworkspace/
+/DerivedData
+/Pods
+/TiMessagesTableViewController.xcworkspace

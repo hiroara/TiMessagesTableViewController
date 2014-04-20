@@ -64,16 +64,40 @@ TiMessagesTableViewController *vc;
     }
 }
 
+-(void)setIncomingColor_:(id)argColor
+{
+    if (vc != nil) {
+        vc.incomingColor = [[TiUtils colorValue:argColor] _color];
+    }
+}
 -(void)setIncomingBackgroundColor_:(id)argColor
 {
     if (vc != nil) {
         vc.incomingBubbleColor = [[TiUtils colorValue:argColor] _color];
     }
 }
+-(void)setOutgoingColor_:(id)argColor
+{
+    if (vc != nil) {
+        vc.outgoingColor = [[TiUtils colorValue:argColor] _color];
+    }
+}
 -(void)setOutgoingBackgroundColor_:(id)argColor
 {
     if (vc != nil) {
         vc.outgoingBubbleColor = [[TiUtils colorValue:argColor] _color];
+    }
+}
+-(void)setSenderColor_:(id)argColor
+{
+    if (vc != nil) {
+        vc.senderColor = [[TiUtils colorValue:argColor] _color];
+    }
+}
+-(void)setTimestampColor_:(id)argColor
+{
+    if (vc != nil) {
+        vc.timestampColor = [[TiUtils colorValue:argColor] _color];
     }
 }
 

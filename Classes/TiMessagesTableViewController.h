@@ -13,7 +13,11 @@
 @interface TiMessagesTableViewController : JSMessagesViewController<JSMessagesViewDelegate, JSMessagesViewDataSource>
 
 @property (nonatomic, strong) NSMutableArray *messages;
+@property (nonatomic, strong) UIColor *incomingColor;
 @property (nonatomic, strong) UIColor *incomingBubbleColor;
+@property (nonatomic, strong) UIColor *outgoingColor;
 @property (nonatomic, strong) UIColor *outgoingBubbleColor;
+@property (nonatomic, strong) UIColor *senderColor;
+@property (nonatomic, strong) UIColor *timestampColor;
 
 @end

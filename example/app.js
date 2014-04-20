@@ -16,7 +16,9 @@ Ti.API.info("module is => " + TiMessagesTableViewController);
 var view = TiMessagesTableViewController.createView({
   height: 480, width: 320, backgroundColor: '#ddd',
   placeHolder: 'Please input message!', sender: 'ari_hiro',
-  incomingBackgroundColor: '#AAE', outgoingBackgroundColor: "#EAA"
+  incomingBackgroundColor: '#88E', outgoingBackgroundColor: "#E88",
+  incomingColor: '#115', outgoingColor: "#511",
+  senderColor: '#222', timestampColor: '#555'
 });
 win.add(view);
 console.log(view.sender);

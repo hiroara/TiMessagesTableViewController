@@ -15,8 +15,13 @@ ComArihiroMessagestableModule *proxy;
 
 @implementation TiMessagesTableViewController
 
+@synthesize messages;
+@synthesize incomingColor;
 @synthesize incomingBubbleColor;
+@synthesize outgoingColor;
 @synthesize outgoingBubbleColor;
+@synthesize senderColor;
+@synthesize timestampColor;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -28,12 +33,15 @@ ComArihiroMessagestableModule *proxy;
     self.delegate = self;
     self.dataSource = self;
     
-    self.messages = [[NSMutableArray alloc] init];
+    // initialize properties
+    messages = [[NSMutableArray alloc] init];
+    incomingBubbleColor = [UIColor js_bubbleBlueColor];
+    outgoingBubbleColor = [UIColor js_bubbleLightGrayColor];
+    senderColor = [UIColor lightGrayColor];
+    timestampColor = [UIColor lightGrayColor];
 
     [super viewDidLoad];
-    
-//    [[JSBubbleView appearance] setFont:[UIFont fontWithName:@"AppleGothic" size:12]];
-    
+
     self.messageInputView.image = [[[ComArihiroMessagestableModule getShared] getAssetImage:@"input-bar-flat.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)
         resizingMode:UIImageResizingModeStretch];
 
@@ -64,7 +72,7 @@ ComArihiroMessagestableModule *proxy;
  */
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
     JSMessage* message = [[JSMessage alloc] initWithText:text sender:sender date:date];
-    [self.messages addObject:message];
+    [messages addObject:message];
     [self finishSend];
     [self scrollToBottomAnimated:YES];
 }
@@ -78,7 +86,7 @@ ComArihiroMessagestableModule *proxy;
  *  @see JSBubbleMessageType.
  */
 - (JSBubbleMessageType)messageTypeForRowAtIndexPath:(NSIndexPath *)indexPath {
-    JSMessage *message = [self.messages objectAtIndex:indexPath.row];
+    JSMessage *message = [messages objectAtIndex:indexPath.row];
     return message.sender == self.sender ? JSBubbleMessageTypeOutgoing : JSBubbleMessageTypeIncoming;
 }
 
@@ -92,12 +100,7 @@ ComArihiroMessagestableModule *proxy;
  *  @see JSBubbleImageViewFactory.
  */
 - (UIImageView *)bubbleImageViewWithType:(JSBubbleMessageType)type forRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIColor *color;
-    if (type == JSBubbleMessageTypeOutgoing) {
-        color = incomingBubbleColor != nil ? incomingBubbleColor : [UIColor js_bubbleBlueColor];
-    } else {
-        color = outgoingBubbleColor != nil ? outgoingBubbleColor : [UIColor js_bubbleLightGrayColor];
-    }
+    UIColor *color = type == JSBubbleMessageTypeOutgoing ? incomingBubbleColor : outgoingBubbleColor;
     return [TiBubbleImagesViewFactory bubbleImageViewForType:type color:color];
 }
 
@@ -130,24 +133,24 @@ ComArihiroMessagestableModule *proxy;
  */
 - (void)configureCell:(JSBubbleMessageCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+    cell.bubbleView.textView.textColor = [cell messageType] == JSBubbleMessageTypeOutgoing ? outgoingColor : incomingColor;
+
     if ([cell messageType] == JSBubbleMessageTypeOutgoing) {
-        cell.bubbleView.textView.textColor = [UIColor whiteColor];
-        
         if ([cell.bubbleView.textView respondsToSelector:@selector(linkTextAttributes)]) {
             NSMutableDictionary *attrs = [cell.bubbleView.textView.linkTextAttributes mutableCopy];
-            [attrs setValue:[UIColor blueColor] forKey:UITextAttributeTextColor];
+            [attrs setValue:[UIColor blueColor] forKey:NSForegroundColorAttributeName];
             
             cell.bubbleView.textView.linkTextAttributes = attrs;
         }
     }
     
     if (cell.timestampLabel) {
-        cell.timestampLabel.textColor = [UIColor lightGrayColor];
+        cell.timestampLabel.textColor = timestampColor;
         cell.timestampLabel.shadowOffset = CGSizeZero;
     }
     
     if (cell.subtitleLabel) {
-        cell.subtitleLabel.textColor = [UIColor lightGrayColor];
+        cell.subtitleLabel.textColor = senderColor;
     }
     
 #if TARGET_IPHONE_SIMULATOR
