@@ -28,4 +28,16 @@
     [(ComArihiroMessagestableView *)[self view] addMessage:text sender:sender date:date];
 }
 
+- (BOOL)hideInput:(id)args
+{
+    ENSURE_UI_THREAD(hideInput, args);
+    [(ComArihiroMessagestableView *)[self view] hideMessageInputView];
+}
+- (BOOL)showInput:(id)args
+{
+    ENSURE_UI_THREAD(showInput, args);
+    [(ComArihiroMessagestableView *)[self view] showMessageInputView];
+}
+
+
 @end

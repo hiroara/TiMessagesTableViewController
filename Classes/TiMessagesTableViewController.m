@@ -25,6 +25,8 @@ ComArihiroMessagestableModule *proxy;
 @synthesize senderColor;
 @synthesize timestampColor;
 
+CGRect originalTableViewFrame;
+
 #pragma mark lifecycle
 
 - (void)viewDidLoad
@@ -43,13 +45,28 @@ ComArihiroMessagestableModule *proxy;
     
     self.messageInputView.image = [[[ComArihiroMessagestableModule getShared] getAssetImage:@"input-bar-flat.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)
                                                                                                                                   resizingMode:UIImageResizingModeStretch];
-    
+
     [self setBackgroundColor:[UIColor whiteColor]];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward
                                                                                            target:self
                                                                                            action:@selector(buttonPressed:)];
+
+    for (UIGestureRecognizer *recognizer in [self.tableView gestureRecognizers]) {
+        if ([recognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+            [recognizer addTarget:self action:@selector(handleTapGesture:)];
+        }
+    }
 }
+
+- (void)handleTapGesture:(UIPanGestureRecognizer *)tap
+{
+    NSDictionary *eventObj = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              @"tableView", @"target",
+                              nil];
+    [proxy fireEvent:@"click" withObject:eventObj];
+}
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -64,22 +81,58 @@ ComArihiroMessagestableModule *proxy;
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
     NSDictionary *eventObj = [[NSDictionary alloc] initWithObjectsAndKeys:
                               self.sender, @"sender",
                               nil];
     [proxy fireEvent:@"closed" withObject:eventObj];
 }
 
-
-
 #pragma mark Public
 
--(void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
+- (void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
 {
     JSMessage* message = [[JSMessage alloc] initWithText:text sender:sender date:date];
     [messages addObject:message];
     [self finishSend];
     [self scrollToBottomAnimated:YES];
+}
+
+- (BOOL)hideMessageInputView
+{
+    if ([self.messageInputView isHidden]) {
+        return NO;
+    }
+    [self.messageInputView.textView resignFirstResponder];
+
+    CGFloat height = self.messageInputView.frame.size.height;
+    originalTableViewFrame = self.tableView.frame;
+
+    CGRect newFrame = self.tableView.frame;
+    newFrame.size.height = originalTableViewFrame.size.height + height;
+    [self.tableView setFrame:newFrame];
+
+    [self.messageInputView setHidden:YES];
+    
+    [proxy fireEvent:@"hideinput"];
+
+    return YES;
+}
+- (BOOL)showMessageInputView
+{
+    if (![self.messageInputView isHidden]) {
+        return NO;
+    }
+    [self.tableView setFrame:originalTableViewFrame];
+
+    [self.messageInputView.textView becomeFirstResponder];
+
+    [self.messageInputView setHidden:NO];
+    [self scrollToBottomAnimated:YES];
+
+    [proxy fireEvent:@"showinput"];
+
+    return YES;
 }
 
 

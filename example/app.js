@@ -14,12 +14,10 @@ var view = TiMessagesTableViewController.createView({
   incomingColor: '#115', outgoingColor: "#511",
   senderColor: '#222', timestampColor: '#555'
 });
-view.addEventListener('opened', function(e) {
-  console.log(e);
-});
-view.addEventListener('closed', function(e) {
-  console.log(e);
-});
+view.addEventListener('opened', function(e) { console.log(e); });
+view.addEventListener('closed', function(e) { console.log(e); });
+view.addEventListener('showinput', function(e) { console.log(e); });
+view.addEventListener('hideinput', function(e) { console.log(e); });
 win.add(view);
 
 // get properties
@@ -32,12 +30,16 @@ console.log("sender => " + view.sender);
 var count = 0
 view.addEventListener('send', function(e) {
   if (count > 4) {
-    win.remove(this)
+    view.hideInput();
     return
   }
   console.log(e);
   view.sendMessage({text: e.text, sender: e.sender, date: e.date});
   count += 1;
+});
+view.addEventListener('click', function(e) {
+  console.log(e);
+  view.showInput();
 });
 
 // send message programmatically

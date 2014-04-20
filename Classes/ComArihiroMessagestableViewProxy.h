@@ -11,5 +11,7 @@
 }
 
 - (void)sendMessage:(id)args;
+- (BOOL)hideInput:(id)args;
+- (BOOL)showInput:(id)args;
 
 @end

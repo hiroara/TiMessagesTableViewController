@@ -15,7 +15,7 @@ TiMessagesTableViewController *vc;
 
 - (void)initializeState
 {
-    NSLog(@"HOGEHOGE! view:%@", self.view);
+    NSLog(@"[INFO] initialize %@", self.view);
 }
 
 - (UIView *)view
@@ -24,7 +24,6 @@ TiMessagesTableViewController *vc;
         vc = [[TiMessagesTableViewController alloc] init];
         vc.proxy = (ComArihiroMessagestableViewProxy *)[self proxy];
         view = vc.view;
-        vc.tableView.backgroundColor = [UIColor redColor];
 
         [self addSubview:view];
         [TiUtils setView:view positionRect:self.bounds];
@@ -38,6 +37,8 @@ TiMessagesTableViewController *vc;
         [TiUtils setView:view positionRect:bounds];
     }
 }
+
+#pragma mark setter
 
 - (void)setBackgroundColor_:(id)argColor
 {
@@ -97,11 +98,21 @@ TiMessagesTableViewController *vc;
     }
 }
 
+#pragma mark Public API
+
 - (void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
 {
     [vc addMessage:text sender:sender date:date];
 }
 
+- (BOOL)hideMessageInputView
+{
+    [vc hideMessageInputView];
+}
+- (BOOL)showMessageInputView
+{
+    [vc showMessageInputView];
+}
 
 
 @end
