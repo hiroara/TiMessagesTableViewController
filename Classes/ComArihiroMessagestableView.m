@@ -11,24 +11,27 @@
 @implementation ComArihiroMessagestableView
 
 UIView *view;
-TiMessagesTableViewController *vc;
+TiMessagesTableViewController *controller;
 
 - (void)initializeState
 {
-    NSLog(@"[INFO] initialize %@", self.view);
+    [super initializeState];
+    NSLog(@"[INFO] initialize %@", [self controller]);
 }
 
-- (UIView *)view
+- (TiMessagesTableViewController *)controller
 {
+    if (controller == nil) {
+        controller = [[TiMessagesTableViewController alloc] init];
+        controller.proxy = (ComArihiroMessagestableViewProxy *)[self proxy];
+    }
     if (view == nil) {
-        vc = [[TiMessagesTableViewController alloc] init];
-        vc.proxy = (ComArihiroMessagestableViewProxy *)[self proxy];
-        view = vc.view;
-
+        view = controller.view;
+        
         [self addSubview:view];
         [TiUtils setView:view positionRect:self.bounds];
     }
-    return view;
+    return controller;
 }
 
 - (void)frameSizeChanged:(CGRect)frame bounds:(CGRect)bounds
@@ -38,80 +41,68 @@ TiMessagesTableViewController *vc;
     }
 }
 
+- (void)willRemoveSubview:(UIView *)subview
+{
+    [super willRemoveSubview:subview];
+    view = nil;
+}
+
 #pragma mark setter
 
 - (void)setBackgroundColor_:(id)argColor
 {
-    if (vc != nil) {
-        [vc setBackgroundColor:[[TiUtils colorValue:argColor] _color]];
-    }
+    [[self controller] setBackgroundColor:[[TiUtils colorValue:argColor] _color]];
 }
 
 - (void)setPlaceHolder_:(id)argPlaceHolder
 {
-    if(vc != nil) {
-        vc.messageInputView.textView.placeHolder = [TiUtils stringValue:argPlaceHolder];
-    }
+    [self controller].messageInputView.textView.placeHolder = [TiUtils stringValue:argPlaceHolder];
 }
 
 - (void)setSender_:(id)argSender
 {
-    if(vc != nil) {
-        vc.sender = [TiUtils stringValue:argSender];
-    }
+    [self controller].sender = [TiUtils stringValue:argSender];
 }
 
 - (void)setIncomingColor_:(id)argColor
 {
-    if (vc != nil) {
-        vc.incomingColor = [[TiUtils colorValue:argColor] _color];
-    }
+    [self controller].incomingColor = [[TiUtils colorValue:argColor] _color];
 }
 - (void)setIncomingBackgroundColor_:(id)argColor
 {
-    if (vc != nil) {
-        vc.incomingBubbleColor = [[TiUtils colorValue:argColor] _color];
-    }
+    [self controller].incomingBubbleColor = [[TiUtils colorValue:argColor] _color];
 }
 - (void)setOutgoingColor_:(id)argColor
 {
-    if (vc != nil) {
-        vc.outgoingColor = [[TiUtils colorValue:argColor] _color];
-    }
+    [self controller].outgoingColor = [[TiUtils colorValue:argColor] _color];
 }
 - (void)setOutgoingBackgroundColor_:(id)argColor
 {
-    if (vc != nil) {
-        vc.outgoingBubbleColor = [[TiUtils colorValue:argColor] _color];
-    }
+    [self controller].outgoingBubbleColor = [[TiUtils colorValue:argColor] _color];
 }
 - (void)setSenderColor_:(id)argColor
 {
-    if (vc != nil) {
-        vc.senderColor = [[TiUtils colorValue:argColor] _color];
-    }
+    [self controller].senderColor = [[TiUtils colorValue:argColor] _color];
 }
 - (void)setTimestampColor_:(id)argColor
 {
-    if (vc != nil) {
-        vc.timestampColor = [[TiUtils colorValue:argColor] _color];
-    }
+    [self controller].timestampColor = [[TiUtils colorValue:argColor] _color];
 }
 
 #pragma mark Public API
 
 - (void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
 {
-    [vc addMessage:text sender:sender date:date];
+    [[self controller] addMessage:text sender:sender date:date];
 }
 
 - (BOOL)hideMessageInputView
 {
-    [vc hideMessageInputView];
+    [[self controller] hideMessageInputView];
 }
 - (BOOL)showMessageInputView
 {
-    [vc showMessageInputView];
+    [[self controller] showMessageInputView];
 }
 
 

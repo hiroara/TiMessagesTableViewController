@@ -28,6 +28,13 @@
     [(ComArihiroMessagestableView *)[self view] addMessage:text sender:sender date:date];
 }
 
+-(void)windowWillOpen
+{
+    TiMessagesTableViewController *ctl = [(ComArihiroMessagestableView *)view controller];
+    [ctl viewWillAppear:NO];
+    [super windowWillOpen];
+}
+
 - (BOOL)hideInput:(id)args
 {
     ENSURE_UI_THREAD(hideInput, args);

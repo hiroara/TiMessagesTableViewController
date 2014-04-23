@@ -26,6 +26,7 @@ ComArihiroMessagestableModule *proxy;
 @synthesize timestampColor;
 
 CGRect originalTableViewFrame;
+BOOL isVisible;
 
 #pragma mark lifecycle
 
@@ -70,6 +71,9 @@ CGRect originalTableViewFrame;
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    if (isVisible) {
+        return;
+    }
     [super viewWillAppear:animated];
     [self scrollToBottomAnimated:NO];
 
@@ -77,15 +81,20 @@ CGRect originalTableViewFrame;
                               self.sender, @"sender",
                               nil];
     [proxy fireEvent:@"opened" withObject:eventObj];
+    isVisible = YES;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    if (!isVisible) {
+        return;
+    }
     [super viewWillDisappear:animated];
     NSDictionary *eventObj = [[NSDictionary alloc] initWithObjectsAndKeys:
                               self.sender, @"sender",
                               nil];
     [proxy fireEvent:@"closed" withObject:eventObj];
+    isVisible = NO;
 }
 
 #pragma mark Public
