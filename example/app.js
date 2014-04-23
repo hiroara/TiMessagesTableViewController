@@ -46,3 +46,10 @@ view.addEventListener('click', function(e) {
 view.sendMessage({text: 'Ho-ge Ho-ge', sender: 'hiro_ari', date: new Date()});
 
 win.open();
+setTimeout(function(){
+  win.close();
+  setTimeout(function(){
+    view.sendMessage({text: 'Foo Foooo!!!', sender: 'hiro_ari', date: new Date()});
+    win.open();
+  }, 2000);
+}, 2000);

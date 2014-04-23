@@ -16,5 +16,6 @@
 - (void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date;
 - (BOOL)hideMessageInputView;
 - (BOOL)showMessageInputView;
+- (TiMessagesTableViewController *)controller;
 
 @end

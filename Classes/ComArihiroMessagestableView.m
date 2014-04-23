@@ -45,6 +45,7 @@ TiMessagesTableViewController *controller;
 {
     [super willRemoveSubview:subview];
     view = nil;
+    controller = nil;
 }
 
 #pragma mark setter
