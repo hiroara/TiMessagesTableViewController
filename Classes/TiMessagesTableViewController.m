@@ -286,7 +286,7 @@ BOOL isVisible;
     if (message.status == MSG_FAILED) {
         return [TiBubbleImagesViewFactory bubbleImageViewForType:type color:failedBubbleColor];
     }
-    UIColor *color = type == JSBubbleMessageTypeOutgoing ? incomingBubbleColor : outgoingBubbleColor;
+    UIColor *color = type == JSBubbleMessageTypeOutgoing ? outgoingBubbleColor : incomingBubbleColor;
     return [TiBubbleImagesViewFactory bubbleImageViewForType:type color:color];
 }
 
