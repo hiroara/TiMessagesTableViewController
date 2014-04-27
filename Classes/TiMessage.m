@@ -11,12 +11,25 @@
 @implementation TiMessage
 
 @synthesize status;
+@synthesize messageId;
+
+static unsigned int currentMessageId = 1000;
+
+- (int) generateMessageID{
+    int newId;
+    @synchronized (self) {
+        newId = currentMessageId++;
+    }
+    return newId;
+}
+
 
 - (instancetype)initWithText:(NSString *)text
                       sender:(NSString *)sender
                         date:(NSDate *)date
 {
     self = [super initWithText:text sender:sender date:date];
+    messageId = [self generateMessageID];
     status = MSG_PENDING;
     return self;
 }
@@ -36,11 +49,12 @@
             break;
     }
     NSMutableDictionary *eventObj = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                              self.text, @"text",
-                              self.sender, @"sender",
-                              self.date, @"date",
-                              statusText, @"status",
-                              nil];
+                                     [NSNumber numberWithInteger:messageId], @"messageId",
+                                     self.text, @"text",
+                                     self.sender, @"sender",
+                                     self.date, @"date",
+                                     statusText, @"status",
+                                     nil];
     return eventObj;
 }
 

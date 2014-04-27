@@ -27,6 +27,7 @@ ComArihiroMessagestableModule *proxy;
 @synthesize senderFont;
 @synthesize timestampColor;
 @synthesize timestampFont;
+@synthesize failedAlert;
 
 CGRect originalTableViewFrame;
 BOOL isVisible;
@@ -45,6 +46,7 @@ BOOL isVisible;
     failedBubbleColor = [UIColor redColor];
     senderColor = [UIColor lightGrayColor];
     timestampColor = [UIColor lightGrayColor];
+    failedAlert = @"failed to send.";
 
 
     [super viewDidLoad];
@@ -125,18 +127,33 @@ BOOL isVisible;
 
 #pragma mark Public
 
-- (NSUInteger)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
+- (TiMessage *)getMessageWithMessageId:(NSInteger)messageId
+{
+    TiMessage* message = nil;
+    for (TiMessage *msg in messages) {
+        if (msg.messageId == messageId) {
+            message = msg;
+        }
+    }
+    return message;
+}
+
+- (TiMessage *)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
 {
     TiMessage* message = [[TiMessage alloc] initWithText:text sender:sender date:date];
     [messages addObject:message];
     [self finishSend];
     [self scrollToBottomAnimated:YES];
-    return [messages indexOfObject:message];
+    return message;
 }
-- (NSUInteger)removeMessageAtIndex:(NSUInteger)index
+- (NSUInteger)removeMessageWithMessageID:(NSUInteger)messageId
 {
-    TiMessage* message = [messages objectAtIndex:index];
-    [messages removeObjectAtIndex:index];
+    TiMessage* message = [self getMessageWithMessageId:messageId];
+    if (message == nil) {
+        return;
+    }
+    NSUInteger index = [messages indexOfObject:message];
+    [messages removeObject:message];
 
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     [self.tableView beginUpdates];
@@ -150,9 +167,13 @@ BOOL isVisible;
 }
 
 
-- (BOOL)succeedInSendingMessageAt:(NSInteger)index
+- (BOOL)succeedInSendingMessageWithMessageID:(NSInteger)messageId
 {
-    TiMessage *message = [messages objectAtIndex:index];
+    TiMessage* message = [self getMessageWithMessageId:messageId];
+    if (message == nil) {
+        return;
+    }
+    NSUInteger index = [messages indexOfObject:message];
     message.status = MSG_SUCCESS;
     JSBubbleMessageCell *cell = (JSBubbleMessageCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     if (cell.bubbleView.alpha < 1) {
@@ -161,17 +182,19 @@ BOOL isVisible;
     }
     return NO;
 }
-- (BOOL)failInSendingMessageAt:(NSInteger)index
+- (BOOL)failInSendingMessageWithMessageID:(NSInteger)messageId
 {
-    if ([messages count] < index && [messages objectAtIndex:index] == nil) {
-        return NO;
+    TiMessage* message = [self getMessageWithMessageId:messageId];
+    if (message == nil) {
+        return;
     }
+    NSUInteger index = [messages indexOfObject:message];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-    TiMessage *message = [messages objectAtIndex:index];
     message.status = MSG_FAILED;
-    JSBubbleMessageCell *cell = (JSBubbleMessageCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    JSBubbleMessageCell *cell = (JSBubbleMessageCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     cell.bubbleView.bubbleImageView.image = [TiBubbleImagesViewFactory bubbleImageViewForType:[self messageTypeForRowAtIndexPath:indexPath] color:failedBubbleColor].image;
     cell.bubbleView.alpha = 1;
+    cell.timestampLabel.text = failedAlert;
 
     return YES;
 }
@@ -235,14 +258,11 @@ BOOL isVisible;
  *  @param date   The date and time at which the message was sent.
  */
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
-    NSUInteger index = [self addMessage:text sender:sender date:date];
+    TiMessage *message = [self addMessage:text sender:sender date:date];
 
-    NSDictionary *eventObj = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              text, @"text",
-                              sender, @"sender",
-                              date, @"date",
-                              [NSNumber numberWithUnsignedInteger:index], @"index",
-                              nil];
+    
+    NSMutableDictionary *eventObj = [message eventObject];
+    [eventObj setValue:[NSNumber numberWithUnsignedInteger:[messages indexOfObject:message]] forKey:@"index"];
     [proxy fireEvent:@"send" withObject:eventObj];
 }
 
@@ -308,8 +328,9 @@ BOOL isVisible;
 {
     cell.bubbleView.textView.textColor = [cell messageType] == JSBubbleMessageTypeOutgoing ? outgoingColor : incomingColor;
 
+    TiMessage *message = [messages objectAtIndex:indexPath.row];
+
     if ([cell messageType] == JSBubbleMessageTypeOutgoing) {
-        TiMessage *message = [messages objectAtIndex:indexPath.row];
         if (message.status == MSG_PENDING) {
           cell.bubbleView.alpha = 0.6;
         }
@@ -330,9 +351,13 @@ BOOL isVisible;
         cell.timestampLabel.shadowOffset = CGSizeZero;
         cell.timestampLabel.textAlignment = [cell messageType] == JSBubbleMessageTypeOutgoing ? NSTextAlignmentRight : NSTextAlignmentLeft;
         NSDate *timestamp = ((TiMessage *)[messages objectAtIndex:indexPath.row]).date;
-        cell.timestampLabel.text = [NSDateFormatter localizedStringFromDate:timestamp
-                                                                  dateStyle:NSDateFormatterNoStyle
-                                                                  timeStyle:NSDateFormatterShortStyle];
+        if (message.status == MSG_FAILED) {
+            cell.timestampLabel.text = failedAlert;
+        } else {
+            cell.timestampLabel.text = [NSDateFormatter localizedStringFromDate:timestamp
+                                                                      dateStyle:NSDateFormatterNoStyle
+                                                                      timeStyle:NSDateFormatterShortStyle];
+        }
     }
     
     if (cell.subtitleLabel) {

@@ -12,8 +12,9 @@ var view = TiMessagesTableViewController.createView({
   placeHolder: 'Please input message!', sender: 'ari_hiro',
   incomingBackgroundColor: '#88E', outgoingBackgroundColor: '#E88', failedBackgroundColor: '#E66',
   incomingColor: '#115', outgoingColor: '#511',
-  senderColor: '#333', timestampColor: '#777',
-  senderFontSize: 12, timestampFontSize: 9
+  senderColor: '#333', timestampColor: '#666',
+  senderFontSize: 12, timestampFontSize: 9,
+  failedAlert: 'Failed to send message!!'
 });
 view.addEventListener('opened', function(e) { console.log(e); });
 view.addEventListener('closed', function(e) { console.log(e); });
@@ -37,10 +38,10 @@ view.addEventListener('send', function(e) {
   console.log(e);
   if (count % 2 == 0) {
     console.log("succeed!");
-    setTimeout(function(){ view.success(e.index); }, 1000);
+    setTimeout(function(){ view.success(e.messageId); }, 1000);
   } else {
     console.log("fail!");
-    setTimeout(function(){ view.failure(e.index); }, 1000);
+    setTimeout(function(){ view.failure(e.messageId); }, 1000);
   }
   count += 1;
 });
@@ -48,7 +49,7 @@ view.addEventListener('click', function(e) {
   console.log(e);
   view.showInput();
   if (e.target == "message") {
-    view.removeMessage(e.index);
+    view.removeMessage(e.messageId);
   }
 });
 

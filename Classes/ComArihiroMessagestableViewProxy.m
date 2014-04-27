@@ -17,7 +17,7 @@
     return [(ComArihiroMessagestableView *)[self view] controller];
 }
 
-- (id)sendMessage:(id)args
+- (void)sendMessage:(id)args
 {
     ENSURE_UI_THREAD(sendMessage, args);
     ENSURE_SINGLE_ARG(args, NSDictionary);
@@ -30,15 +30,14 @@
     ENSURE_ARG_FOR_KEY(sender, args, @"sender", NSString);
     ENSURE_ARG_FOR_KEY(date, args, @"date", NSDate);
 
-    NSUInteger index = [[self controller] addMessage:text sender:sender date:date];
-    return [NSNumber numberWithUnsignedInteger:index];
+    [[self controller] addMessage:text sender:sender date:date];
 }
-- (void)removeMessage:(id)index
+- (void)removeMessage:(id)messageId
 {
-    ENSURE_UI_THREAD(removeMessage, index);
-    ENSURE_SINGLE_ARG(index, NSNumber);
+    ENSURE_UI_THREAD(removeMessage, messageId);
+    ENSURE_SINGLE_ARG(messageId, NSNumber);
 
-    [[self controller] removeMessageAtIndex:[index unsignedIntegerValue]];
+    [[self controller] removeMessageWithMessageID:[messageId unsignedIntegerValue]];
 }
 
 -(void)windowWillOpen
@@ -52,14 +51,14 @@
     ENSURE_UI_THREAD(success, index);
     ENSURE_SINGLE_ARG(index, NSNumber);
 
-    [[self controller] succeedInSendingMessageAt:[index unsignedIntegerValue]];
+    [[self controller] succeedInSendingMessageWithMessageID:[index unsignedIntegerValue]];
 }
 - (void)failure:(id)index
 {
     ENSURE_UI_THREAD(failure, index);
     ENSURE_SINGLE_ARG(index, NSNumber);
     
-    [[self controller] failInSendingMessageAt:[index unsignedIntegerValue]];
+    [[self controller] failInSendingMessageWithMessageID:[index unsignedIntegerValue]];
 }
 
 - (void)hideInput:(id)args

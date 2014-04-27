@@ -11,6 +11,7 @@
 @interface TiMessage : JSMessage
 
 @property(nonatomic, assign) NSInteger status;
+@property(nonatomic, assign) NSInteger messageId;
 
 enum {
     MSG_SUCCESS,

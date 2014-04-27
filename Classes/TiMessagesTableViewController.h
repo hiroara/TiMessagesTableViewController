@@ -10,6 +10,7 @@
 #import "JSMessagesViewController.h"
 
 @class ComArihiroMessagestableViewProxy;
+@class TiMessage;
 
 @interface TiMessagesTableViewController : JSMessagesViewController<JSMessagesViewDelegate, JSMessagesViewDataSource>
 
@@ -25,11 +26,12 @@
 @property (nonatomic, strong) UIFont *senderFont;
 @property (nonatomic, strong) UIColor *timestampColor;
 @property (nonatomic, strong) UIFont *timestampFont;
+@property (nonatomic, strong) NSString *failedAlert;
 
-- (NSUInteger)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date;
-- (NSUInteger)removeMessageAtIndex:(NSUInteger)index;
-- (BOOL)succeedInSendingMessageAt:(NSInteger)index;
-- (BOOL)failInSendingMessageAt:(NSInteger)index;
+- (TiMessage *)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date;
+- (NSUInteger)removeMessageWithMessageID:(NSUInteger)index;
+- (BOOL)succeedInSendingMessageWithMessageID:(NSInteger)messageId;
+- (BOOL)failInSendingMessageWithMessageID:(NSInteger)messageId;
 - (BOOL)hideMessageInputView;
 - (BOOL)showMessageInputView;
 
