@@ -46,6 +46,9 @@ view.addEventListener('send', function(e) {
 view.addEventListener('click', function(e) {
   console.log(e);
   view.showInput();
+  if (e.target == "message") {
+    view.removeMessage(e.index);
+  }
 });
 
 // send message programmatically

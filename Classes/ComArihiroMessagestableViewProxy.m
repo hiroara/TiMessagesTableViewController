@@ -33,6 +33,13 @@
     NSUInteger index = [[self controller] addMessage:text sender:sender date:date];
     return [NSNumber numberWithUnsignedInteger:index];
 }
+- (void)removeMessage:(id)index
+{
+    ENSURE_UI_THREAD(removeMessage, index);
+    ENSURE_SINGLE_ARG(index, NSNumber);
+
+    [[self controller] removeMessageAtIndex:[index unsignedIntegerValue]];
+}
 
 -(void)windowWillOpen
 {

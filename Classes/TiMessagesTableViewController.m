@@ -28,7 +28,6 @@ ComArihiroMessagestableModule *proxy;
 
 CGRect originalTableViewFrame;
 BOOL isVisible;
-NSMutableArray *bubbleTaps;
 
 #pragma mark lifecycle
 
@@ -44,7 +43,6 @@ NSMutableArray *bubbleTaps;
     failedBubbleColor = [UIColor redColor];
     senderColor = [UIColor lightGrayColor];
     timestampColor = [UIColor lightGrayColor];
-    bubbleTaps = [[NSMutableArray alloc] init];
 
 
     [super viewDidLoad];
@@ -105,13 +103,22 @@ NSMutableArray *bubbleTaps;
 
 - (void)handleTapBubble:(UITapGestureRecognizer *)tap
 {
-    NSInteger index = tap.view.tag;
-    TiMessage *message = [messages objectAtIndex:index];
+    UIView *cell = tap.view;
+    while (cell != nil && ![cell isKindOfClass:[UITableViewCell class]]) {
+        cell = [cell superview];
+    }
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(UITableViewCell *)cell];
+    TiMessage *message = nil;
+    if ([messages count] > indexPath.row) {
+        message = [messages objectAtIndex:indexPath.row];
+    }
+    if (message == nil) {
+        return;
+    }
     NSDictionary *eventObj = [message eventObject];
     [eventObj setValue:@"message" forKey:@"target"];
-    [eventObj setValue:[NSNumber numberWithUnsignedInteger:index] forKey:@"index"];
+    [eventObj setValue:[NSNumber numberWithUnsignedInteger:indexPath.row] forKey:@"index"];
     [proxy fireEvent:@"click" withObject:eventObj];
-    
 }
 
 #pragma mark Public
@@ -124,6 +131,22 @@ NSMutableArray *bubbleTaps;
     [self scrollToBottomAnimated:YES];
     return [messages indexOfObject:message];
 }
+- (NSUInteger)removeMessageAtIndex:(NSUInteger)index
+{
+    TiMessage* message = [messages objectAtIndex:index];
+    [messages removeObjectAtIndex:index];
+
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    [self.tableView beginUpdates];
+    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableView endUpdates];
+
+    NSMutableDictionary *eventObj = [message eventObject];
+    [proxy fireEvent:@"removed" withObject:eventObj];
+
+    return index;
+}
+
 
 - (BOOL)succeedInSendingMessageAt:(NSInteger)index
 {
@@ -305,14 +328,16 @@ NSMutableArray *bubbleTaps;
     if (cell.subtitleLabel) {
         cell.subtitleLabel.textColor = senderColor;
     }
-    
-    if ([bubbleTaps count] <= indexPath.row || [bubbleTaps objectAtIndex:indexPath.row] != nil) {
+    BOOL isRegisterd = NO;
+    for (UIGestureRecognizer *recognizer in [cell.bubbleView gestureRecognizers]) {
+        if ([recognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+            isRegisterd = YES;
+        }
+    }
+    if (!isRegisterd) {
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBubble:)];
         [cell.bubbleView addGestureRecognizer:tap];
         [tap addTarget:self action:@selector(handleTapGestureRecognizer:)];
-
-        cell.bubbleView.tag = indexPath.row;
-        [bubbleTaps insertObject:tap atIndex:indexPath.row];
     }
 
     

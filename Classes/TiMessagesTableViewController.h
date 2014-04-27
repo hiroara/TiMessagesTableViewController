@@ -25,6 +25,7 @@
 @property (nonatomic, strong) UIColor *timestampColor;
 
 - (NSUInteger)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date;
+- (NSUInteger)removeMessageAtIndex:(NSUInteger)index;
 - (BOOL)succeedInSendingMessageAt:(NSInteger)index;
 - (BOOL)failInSendingMessageAt:(NSInteger)index;
 - (BOOL)hideMessageInputView;
