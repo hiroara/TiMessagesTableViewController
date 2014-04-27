@@ -89,9 +89,20 @@ TiMessagesTableViewController *controller;
 {
     [self controller].senderColor = [[TiUtils colorValue:argColor] _color];
 }
+- (void)setSenderFontSize_:(id)argSize
+{
+    ENSURE_SINGLE_ARG(argSize, NSNumber);
+    [self controller].senderFont = [UIFont systemFontOfSize:((NSNumber *)argSize).floatValue];
+}
 - (void)setTimestampColor_:(id)argColor
 {
     [self controller].timestampColor = [[TiUtils colorValue:argColor] _color];
 }
+- (void)setTimestampFontSize_:(id)argSize
+{
+    ENSURE_SINGLE_ARG(argSize, NSNumber);
+    [self controller].timestampFont = [UIFont systemFontOfSize:((NSNumber *)argSize).floatValue];
+}
+
 
 @end

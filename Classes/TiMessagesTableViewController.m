@@ -24,7 +24,9 @@ ComArihiroMessagestableModule *proxy;
 @synthesize outgoingBubbleColor;
 @synthesize failedBubbleColor;
 @synthesize senderColor;
+@synthesize senderFont;
 @synthesize timestampColor;
+@synthesize timestampFont;
 
 CGRect originalTableViewFrame;
 BOOL isVisible;
@@ -320,12 +322,23 @@ BOOL isVisible;
     }
     
     if (cell.timestampLabel) {
+        if (timestampFont != nil) {
+            cell.timestampLabel.font = timestampFont;
+        }
+        
         cell.timestampLabel.textColor = timestampColor;
         cell.timestampLabel.shadowOffset = CGSizeZero;
         cell.timestampLabel.textAlignment = [cell messageType] == JSBubbleMessageTypeOutgoing ? NSTextAlignmentRight : NSTextAlignmentLeft;
+        NSDate *timestamp = ((TiMessage *)[messages objectAtIndex:indexPath.row]).date;
+        cell.timestampLabel.text = [NSDateFormatter localizedStringFromDate:timestamp
+                                                                  dateStyle:NSDateFormatterNoStyle
+                                                                  timeStyle:NSDateFormatterShortStyle];
     }
     
     if (cell.subtitleLabel) {
+        if (senderFont != nil) {
+            cell.subtitleLabel.font = senderFont;
+        }
         cell.subtitleLabel.textColor = senderColor;
     }
     BOOL isRegisterd = NO;

@@ -22,7 +22,9 @@
 @property (nonatomic, strong) UIColor *outgoingBubbleColor;
 @property (nonatomic, strong) UIColor *failedBubbleColor;
 @property (nonatomic, strong) UIColor *senderColor;
+@property (nonatomic, strong) UIFont *senderFont;
 @property (nonatomic, strong) UIColor *timestampColor;
+@property (nonatomic, strong) UIFont *timestampFont;
 
 - (NSUInteger)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date;
 - (NSUInteger)removeMessageAtIndex:(NSUInteger)index;

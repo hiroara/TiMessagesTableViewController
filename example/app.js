@@ -12,7 +12,8 @@ var view = TiMessagesTableViewController.createView({
   placeHolder: 'Please input message!', sender: 'ari_hiro',
   incomingBackgroundColor: '#88E', outgoingBackgroundColor: '#E88', failedBackgroundColor: '#E66',
   incomingColor: '#115', outgoingColor: '#511',
-  senderColor: '#222', timestampColor: '#555'
+  senderColor: '#333', timestampColor: '#777',
+  senderFontSize: 12, timestampFontSize: 9
 });
 view.addEventListener('opened', function(e) { console.log(e); });
 view.addEventListener('closed', function(e) { console.log(e); });
