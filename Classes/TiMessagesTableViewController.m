@@ -28,6 +28,7 @@ ComArihiroMessagestableModule *proxy;
 
 CGRect originalTableViewFrame;
 BOOL isVisible;
+NSMutableArray *bubbleTaps;
 
 #pragma mark lifecycle
 
@@ -43,6 +44,8 @@ BOOL isVisible;
     failedBubbleColor = [UIColor redColor];
     senderColor = [UIColor lightGrayColor];
     timestampColor = [UIColor lightGrayColor];
+    bubbleTaps = [[NSMutableArray alloc] init];
+
 
     [super viewDidLoad];
 
@@ -61,15 +64,6 @@ BOOL isVisible;
         }
     }
 }
-
-- (void)handleTapGesture:(UIPanGestureRecognizer *)tap
-{
-    NSDictionary *eventObj = [[NSDictionary alloc] initWithObjectsAndKeys:
-                              @"tableView", @"target",
-                              nil];
-    [proxy fireEvent:@"click" withObject:eventObj];
-}
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -97,6 +91,27 @@ BOOL isVisible;
                               nil];
     [proxy fireEvent:@"closed" withObject:eventObj];
     isVisible = NO;
+}
+
+#pragma mark Handle gesture
+
+- (void)handleTapGesture:(UIPanGestureRecognizer *)tap
+{
+    NSDictionary *eventObj = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              @"tableView", @"target",
+                              nil];
+    [proxy fireEvent:@"click" withObject:eventObj];
+}
+
+- (void)handleTapBubble:(UITapGestureRecognizer *)tap
+{
+    NSInteger index = tap.view.tag;
+    TiMessage *message = [messages objectAtIndex:index];
+    NSDictionary *eventObj = [message eventObject];
+    [eventObj setValue:@"message" forKey:@"target"];
+    [eventObj setValue:[NSNumber numberWithUnsignedInteger:index] forKey:@"index"];
+    [proxy fireEvent:@"click" withObject:eventObj];
+    
 }
 
 #pragma mark Public
@@ -290,6 +305,16 @@ BOOL isVisible;
     if (cell.subtitleLabel) {
         cell.subtitleLabel.textColor = senderColor;
     }
+    
+    if ([bubbleTaps count] <= indexPath.row || [bubbleTaps objectAtIndex:indexPath.row] != nil) {
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapBubble:)];
+        [cell.bubbleView addGestureRecognizer:tap];
+        [tap addTarget:self action:@selector(handleTapGestureRecognizer:)];
+
+        cell.bubbleView.tag = indexPath.row;
+        [bubbleTaps insertObject:tap atIndex:indexPath.row];
+    }
+
     
 #if TARGET_IPHONE_SIMULATOR
     cell.bubbleView.textView.dataDetectorTypes = UIDataDetectorTypeNone;

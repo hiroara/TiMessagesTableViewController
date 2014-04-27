@@ -18,4 +18,6 @@ enum {
     MSG_PENDING
 };
 
+- (NSDictionary *)eventObject;
+
 @end
