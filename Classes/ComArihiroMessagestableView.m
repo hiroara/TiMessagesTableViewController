@@ -110,5 +110,10 @@ TiMessagesTableViewController *controller;
     [self controller].failedAlert = (NSString *)alert;
 }
 
+- (void)setSendButtonText_:(id)text
+{
+    ENSURE_SINGLE_ARG(text, NSString);
+    [[self controller] setSendButtonTitle:text];
+}
 
 @end

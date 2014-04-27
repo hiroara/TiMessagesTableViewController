@@ -14,7 +14,8 @@ var view = TiMessagesTableViewController.createView({
   incomingColor: '#115', outgoingColor: '#511',
   senderColor: '#333', timestampColor: '#666',
   senderFontSize: 12, timestampFontSize: 9,
-  failedAlert: 'Failed to send message!!'
+  failedAlert: 'Failed to send message!!',
+  sendButtonText: 'Send!!'
 });
 view.addEventListener('opened', function(e) { console.log(e); });
 view.addEventListener('closed', function(e) { console.log(e); });

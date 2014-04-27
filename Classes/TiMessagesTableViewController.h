@@ -34,5 +34,6 @@
 - (BOOL)failInSendingMessageWithMessageID:(NSInteger)messageId;
 - (BOOL)hideMessageInputView;
 - (BOOL)showMessageInputView;
+- (void)setSendButtonTitle:(NSString *)title;
 
 @end

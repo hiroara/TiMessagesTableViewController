@@ -230,6 +230,12 @@ BOOL isVisible;
     return YES;
 }
 
+- (void)setSendButtonTitle:(NSString *)title
+{
+    [self.messageInputView.sendButton setTitle:title forState:UIControlStateNormal];
+    [self.messageInputView.sendButton setTitle:title forState:UIControlStateHighlighted];
+    [self.messageInputView.sendButton setTitle:title forState:UIControlStateDisabled];
+}
 
 #pragma mark - Table view data source
 
