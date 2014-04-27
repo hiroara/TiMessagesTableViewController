@@ -171,30 +171,23 @@ BOOL isVisible;
 {
     TiMessage* message = [self getMessageWithMessageId:messageId];
     if (message == nil) {
-        return;
+        return NO;
     }
     NSUInteger index = [messages indexOfObject:message];
     message.status = MSG_SUCCESS;
-    JSBubbleMessageCell *cell = (JSBubbleMessageCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
-    if (cell.bubbleView.alpha < 1) {
-        cell.bubbleView.alpha = 1;
-        return YES;
-    }
-    return NO;
+    [self.tableView reloadData];
+    return YES;
 }
 - (BOOL)failInSendingMessageWithMessageID:(NSInteger)messageId
 {
     TiMessage* message = [self getMessageWithMessageId:messageId];
     if (message == nil) {
-        return;
+        return NO;
     }
     NSUInteger index = [messages indexOfObject:message];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     message.status = MSG_FAILED;
-    JSBubbleMessageCell *cell = (JSBubbleMessageCell *)[self.tableView cellForRowAtIndexPath:indexPath];
-    cell.bubbleView.bubbleImageView.image = [TiBubbleImagesViewFactory bubbleImageViewForType:[self messageTypeForRowAtIndexPath:indexPath] color:failedBubbleColor].image;
-    cell.bubbleView.alpha = 1;
-    cell.timestampLabel.text = failedAlert;
+    [self.tableView reloadData];
 
     return YES;
 }
@@ -331,22 +324,24 @@ BOOL isVisible;
     TiMessage *message = [messages objectAtIndex:indexPath.row];
 
     if ([cell messageType] == JSBubbleMessageTypeOutgoing) {
-        if (message.status == MSG_PENDING) {
-          cell.bubbleView.alpha = 0.6;
-        }
+        cell.bubbleView.alpha = message.status == MSG_PENDING ? 0.6 : 1;
+        UIImageView *bubbleImageView = [self bubbleImageViewWithType:[self messageTypeForRowAtIndexPath:indexPath]
+                                                   forRowAtIndexPath:indexPath];
+        cell.bubbleView.bubbleImageView.image = bubbleImageView.image;
+
         if ([cell.bubbleView.textView respondsToSelector:@selector(linkTextAttributes)]) {
             NSMutableDictionary *attrs = [cell.bubbleView.textView.linkTextAttributes mutableCopy];
             [attrs setValue:[UIColor blueColor] forKey:NSForegroundColorAttributeName];
-            
+
             cell.bubbleView.textView.linkTextAttributes = attrs;
         }
     }
-    
+
     if (cell.timestampLabel) {
         if (timestampFont != nil) {
             cell.timestampLabel.font = timestampFont;
         }
-        
+
         cell.timestampLabel.textColor = timestampColor;
         cell.timestampLabel.shadowOffset = CGSizeZero;
         cell.timestampLabel.textAlignment = [cell messageType] == JSBubbleMessageTypeOutgoing ? NSTextAlignmentRight : NSTextAlignmentLeft;
