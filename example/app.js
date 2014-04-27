@@ -8,10 +8,10 @@ Ti.API.info("module is => " + TiMessagesTableViewController);
 
 // create view with options
 var view = TiMessagesTableViewController.createView({
-  height: 480, width: 320, backgroundColor: '#ddd',
+  height: 480, width: 320, backgroundColor: '#DDD',
   placeHolder: 'Please input message!', sender: 'ari_hiro',
-  incomingBackgroundColor: '#88E', outgoingBackgroundColor: "#E88",
-  incomingColor: '#115', outgoingColor: "#511",
+  incomingBackgroundColor: '#88E', outgoingBackgroundColor: '#E88', failedBackgroundColor: '#E66',
+  incomingColor: '#115', outgoingColor: '#511',
   senderColor: '#222', timestampColor: '#555'
 });
 view.addEventListener('opened', function(e) { console.log(e); });
@@ -34,7 +34,13 @@ view.addEventListener('send', function(e) {
     return
   }
   console.log(e);
-  view.sendMessage({text: e.text, sender: e.sender, date: e.date});
+  if (count % 2 == 0) {
+    console.log("succeed!");
+    setTimeout(function(){ view.success(e.index); }, 1000);
+  } else {
+    console.log("fail!");
+    setTimeout(function(){ view.failure(e.index); }, 1000);
+  }
   count += 1;
 });
 view.addEventListener('click', function(e) {

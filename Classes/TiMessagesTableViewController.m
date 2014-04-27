@@ -7,7 +7,7 @@
 //
 
 #import "TiMessagesTableViewController.h"
-#import "JSMessage.h"
+#import "TiMessage.h"
 #import "TiBubbleImagesViewFactory.h"
 #import "ComArihiroMessagestableModule.h"
 #import "ComArihiroMessagestableViewProxy.h"
@@ -22,6 +22,7 @@ ComArihiroMessagestableModule *proxy;
 @synthesize incomingBubbleColor;
 @synthesize outgoingColor;
 @synthesize outgoingBubbleColor;
+@synthesize failedBubbleColor;
 @synthesize senderColor;
 @synthesize timestampColor;
 
@@ -39,11 +40,12 @@ BOOL isVisible;
     messages = [[NSMutableArray alloc] init];
     incomingBubbleColor = [UIColor js_bubbleBlueColor];
     outgoingBubbleColor = [UIColor js_bubbleLightGrayColor];
+    failedBubbleColor = [UIColor redColor];
     senderColor = [UIColor lightGrayColor];
     timestampColor = [UIColor lightGrayColor];
-    
+
     [super viewDidLoad];
-    
+
     self.messageInputView.image = [[[ComArihiroMessagestableModule getShared] getAssetImage:@"input-bar-flat.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(2.0f, 0.0f, 0.0f, 0.0f)
                                                                                                                                   resizingMode:UIImageResizingModeStretch];
 
@@ -99,12 +101,39 @@ BOOL isVisible;
 
 #pragma mark Public
 
-- (void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
+- (NSUInteger)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
 {
-    JSMessage* message = [[JSMessage alloc] initWithText:text sender:sender date:date];
+    TiMessage* message = [[TiMessage alloc] initWithText:text sender:sender date:date];
     [messages addObject:message];
     [self finishSend];
     [self scrollToBottomAnimated:YES];
+    return [messages indexOfObject:message];
+}
+
+- (BOOL)succeedInSendingMessageAt:(NSInteger)index
+{
+    TiMessage *message = [messages objectAtIndex:index];
+    message.status = MSG_SUCCESS;
+    JSBubbleMessageCell *cell = (JSBubbleMessageCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    if (cell.bubbleView.alpha < 1) {
+        cell.bubbleView.alpha = 1;
+        return YES;
+    }
+    return NO;
+}
+- (BOOL)failInSendingMessageAt:(NSInteger)index
+{
+    if ([messages count] < index && [messages objectAtIndex:index] == nil) {
+        return NO;
+    }
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+    TiMessage *message = [messages objectAtIndex:index];
+    message.status = MSG_FAILED;
+    JSBubbleMessageCell *cell = (JSBubbleMessageCell *)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    cell.bubbleView.bubbleImageView.image = [TiBubbleImagesViewFactory bubbleImageViewForType:[self messageTypeForRowAtIndexPath:indexPath] color:failedBubbleColor].image;
+    cell.bubbleView.alpha = 1;
+
+    return YES;
 }
 
 - (BOOL)hideMessageInputView
@@ -122,6 +151,7 @@ BOOL isVisible;
     [self.tableView setFrame:newFrame];
 
     [self.messageInputView setHidden:YES];
+    [self scrollToBottomAnimated:YES];
     
     [proxy fireEvent:@"hideinput"];
 
@@ -165,10 +195,13 @@ BOOL isVisible;
  *  @param date   The date and time at which the message was sent.
  */
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
+    NSUInteger index = [self addMessage:text sender:sender date:date];
+
     NSDictionary *eventObj = [[NSDictionary alloc] initWithObjectsAndKeys:
                               text, @"text",
                               sender, @"sender",
                               date, @"date",
+                              [NSNumber numberWithUnsignedInteger:index], @"index",
                               nil];
     [proxy fireEvent:@"send" withObject:eventObj];
 }
@@ -182,7 +215,7 @@ BOOL isVisible;
  *  @see JSBubbleMessageType.
  */
 - (JSBubbleMessageType)messageTypeForRowAtIndexPath:(NSIndexPath *)indexPath {
-    JSMessage *message = [messages objectAtIndex:indexPath.row];
+    TiMessage *message = [messages objectAtIndex:indexPath.row];
     return [message.sender isEqualToString:self.sender] ? JSBubbleMessageTypeOutgoing : JSBubbleMessageTypeIncoming;
 }
 
@@ -196,6 +229,10 @@ BOOL isVisible;
  *  @see JSBubbleImageViewFactory.
  */
 - (UIImageView *)bubbleImageViewWithType:(JSBubbleMessageType)type forRowAtIndexPath:(NSIndexPath *)indexPath {
+    TiMessage *message = [messages objectAtIndex:indexPath.row];
+    if (message.status == MSG_FAILED) {
+        return [TiBubbleImagesViewFactory bubbleImageViewForType:type color:failedBubbleColor];
+    }
     UIColor *color = type == JSBubbleMessageTypeOutgoing ? incomingBubbleColor : outgoingBubbleColor;
     return [TiBubbleImagesViewFactory bubbleImageViewForType:type color:color];
 }
@@ -232,6 +269,10 @@ BOOL isVisible;
     cell.bubbleView.textView.textColor = [cell messageType] == JSBubbleMessageTypeOutgoing ? outgoingColor : incomingColor;
 
     if ([cell messageType] == JSBubbleMessageTypeOutgoing) {
+        TiMessage *message = [messages objectAtIndex:indexPath.row];
+        if (message.status == MSG_PENDING) {
+          cell.bubbleView.alpha = 0.6;
+        }
         if ([cell.bubbleView.textView respondsToSelector:@selector(linkTextAttributes)]) {
             NSMutableDictionary *attrs = [cell.bubbleView.textView.linkTextAttributes mutableCopy];
             [attrs setValue:[UIColor blueColor] forKey:NSForegroundColorAttributeName];
@@ -243,6 +284,7 @@ BOOL isVisible;
     if (cell.timestampLabel) {
         cell.timestampLabel.textColor = timestampColor;
         cell.timestampLabel.shadowOffset = CGSizeZero;
+        cell.timestampLabel.textAlignment = [cell messageType] == JSBubbleMessageTypeOutgoing ? NSTextAlignmentRight : NSTextAlignmentLeft;
     }
     
     if (cell.subtitleLabel) {

@@ -20,10 +20,13 @@
 @property (nonatomic, strong) UIColor *incomingBubbleColor;
 @property (nonatomic, strong) UIColor *outgoingColor;
 @property (nonatomic, strong) UIColor *outgoingBubbleColor;
+@property (nonatomic, strong) UIColor *failedBubbleColor;
 @property (nonatomic, strong) UIColor *senderColor;
 @property (nonatomic, strong) UIColor *timestampColor;
 
-- (void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date;
+- (NSUInteger)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date;
+- (BOOL)succeedInSendingMessageAt:(NSInteger)index;
+- (BOOL)failInSendingMessageAt:(NSInteger)index;
 - (BOOL)hideMessageInputView;
 - (BOOL)showMessageInputView;
 

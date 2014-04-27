@@ -81,6 +81,10 @@ TiMessagesTableViewController *controller;
 {
     [self controller].outgoingBubbleColor = [[TiUtils colorValue:argColor] _color];
 }
+- (void)setFailedBackgroundColor_:(id)argColor
+{
+    [self controller].failedBubbleColor = [[TiUtils colorValue:argColor] _color];
+}
 - (void)setSenderColor_:(id)argColor
 {
     [self controller].senderColor = [[TiUtils colorValue:argColor] _color];
@@ -89,22 +93,5 @@ TiMessagesTableViewController *controller;
 {
     [self controller].timestampColor = [[TiUtils colorValue:argColor] _color];
 }
-
-#pragma mark Public API
-
-- (void)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date
-{
-    [[self controller] addMessage:text sender:sender date:date];
-}
-
-- (BOOL)hideMessageInputView
-{
-    [[self controller] hideMessageInputView];
-}
-- (BOOL)showMessageInputView
-{
-    [[self controller] showMessageInputView];
-}
-
 
 @end
