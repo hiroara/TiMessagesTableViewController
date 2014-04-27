@@ -2,12 +2,12 @@
 # this is your module manifest and used by Titanium
 # during compilation, packaging, distribution, etc.
 #
-version: 0.1
+version: 0.2
 apiversion: 2
-description: My module
-author: Your Name
-license: Specify your license
-copyright: Copyright (c) 2014 by Your Company
+description: This is a wrapper module for MessagesTableViewController
+author: Hiroki Arai
+license: The MIT License (MIT)
+copyright: Copyright (c) 2014 by Hiroki Arai
 
 
 # these should not be edited
