@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "JSMessagesViewController.h"
+#import "TiMessage.h"
 
 @class ComArihiroMessagestableViewProxy;
-@class TiMessage;
 
 @interface TiMessagesTableViewController : JSMessagesViewController<JSMessagesViewDelegate, JSMessagesViewDataSource>
 
@@ -28,7 +28,7 @@
 @property (nonatomic, strong) UIFont *timestampFont;
 @property (nonatomic, strong) NSString *failedAlert;
 
-- (TiMessage *)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date;
+- (TiMessage *)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date status:(MSG_STATUS_ENUM)status;
 - (NSUInteger)removeMessageWithMessageID:(NSUInteger)index;
 - (BOOL)succeedInSendingMessageWithMessageID:(NSInteger)messageId;
 - (BOOL)failInSendingMessageWithMessageID:(NSInteger)messageId;

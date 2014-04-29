@@ -24,13 +24,29 @@
 
     NSString *text;
     NSString *sender;
-    NSDate *date;
+    NSDate *date = [args objectForKey:@"date"];
+    NSString *statusStr = [args objectForKey:@"status"];
 
     ENSURE_ARG_FOR_KEY(text, args, @"text", NSString);
     ENSURE_ARG_FOR_KEY(sender, args, @"sender", NSString);
-    ENSURE_ARG_FOR_KEY(date, args, @"date", NSDate);
 
-    [[self controller] addMessage:text sender:sender date:date];
+    if ([args objectForKey:@"date"] == nil) {
+        date = [NSDate date];
+    }
+    NSLog(@"date is %@", date);
+
+    MSG_STATUS_ENUM status = nil;
+    if (statusStr == nil) {
+        status = MSG_PENDING;
+    } else if ([statusStr isEqualToString:@"success"]) {
+        status = MSG_SUCCESS;
+    } else if ([statusStr isEqualToString:@"failed"]) {
+        status = MSG_FAILED;
+    } else {
+        status = MSG_PENDING;
+    }
+
+    [[self controller] addMessage:text sender:sender date:date status:status];
 }
 - (void)removeMessage:(id)messageId
 {
@@ -63,12 +79,12 @@
 
 - (void)hideInput:(id)args
 {
-    ENSURE_UI_THREAD_0_ARGS;
+    ENSURE_UI_THREAD(hideInput, args);
     [[self controller] hideMessageInputView];
 }
 - (void)showInput:(id)args
 {
-    ENSURE_UI_THREAD_0_ARGS;
+    ENSURE_UI_THREAD(showInput, args);
     [[self controller] showMessageInputView];
 }
 

@@ -10,8 +10,8 @@
 
 @implementation TiMessage
 
-@synthesize status;
-@synthesize messageId;
+@synthesize status = _status;
+@synthesize messageId = _messageId;
 
 static unsigned int currentMessageId = 1000;
 
@@ -23,21 +23,26 @@ static unsigned int currentMessageId = 1000;
     return newId;
 }
 
-
+- (instancetype)initWithText:(NSString *)text sender:(NSString *)sender date:(NSDate *)date status:(MSG_STATUS_ENUM)status
+{
+    self = [self initWithText:text sender:sender date:date];
+    _status = status;
+    return self;
+}
 - (instancetype)initWithText:(NSString *)text
                       sender:(NSString *)sender
                         date:(NSDate *)date
 {
     self = [super initWithText:text sender:sender date:date];
-    messageId = [self generateMessageID];
-    status = MSG_PENDING;
+    _messageId = [self generateMessageID];
+    _status = MSG_PENDING;
     return self;
 }
 
 - (NSMutableDictionary *)eventObject;
 {
     NSString *statusText = nil;
-    switch (status) {
+    switch (_status) {
         case MSG_PENDING:
             statusText = @"pending";
             break;
@@ -49,7 +54,7 @@ static unsigned int currentMessageId = 1000;
             break;
     }
     NSMutableDictionary *eventObj = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                     [NSNumber numberWithInteger:messageId], @"messageId",
+                                     [NSNumber numberWithInteger:_messageId], @"messageId",
                                      self.text, @"text",
                                      self.sender, @"sender",
                                      self.date, @"date",

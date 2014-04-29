@@ -55,13 +55,14 @@ view.addEventListener('click', function(e) {
 });
 
 // send message programmatically
-view.sendMessage({text: 'Ho-ge Ho-ge', sender: 'hiro_ari', date: new Date()});
+view.sendMessage({text: 'Ho-ge Ho-ge', sender: 'hiro_ari'});
 
 win.open();
 setTimeout(function(){
   win.close();
   setTimeout(function(){
-    view.sendMessage({text: 'Foo Foooo!!!', sender: 'hiro_ari', date: new Date()});
+    view.sendMessage({text: 'Barrrrrrrr', sender: 'ari_hiro', date: (new Date(new Date().getTime() - 1 * 60 * 60 * 1000)), status: 'success'});
+    view.sendMessage({text: 'Foo Foooo!!!', sender: 'hiro_ari'});
     win.open();
   }, 2000);
 }, 2000);
