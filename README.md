@@ -14,7 +14,7 @@ Example:
 
 ```
 <modules>
-  <module version="0.1" platform="iphone">com.arihiro.messagestable</module>
+  <module version="0.0.7" platform="iphone">com.arihiro.messagestable</module>
 </modules>
 ```
 
@@ -33,11 +33,14 @@ var TiMessagesTableViewController = require('com.arihiro.messagestable');
 
 // create view with options
 var view = TiMessagesTableViewController.createView({
-  height: 480, width: 320, backgroundColor: '#ddd',
+  height: 480, width: 320, backgroundColor: '#DDD',
   placeHolder: 'Please input message!', sender: 'ari_hiro',
-  incomingBackgroundColor: '#88E', outgoingBackgroundColor: "#E88",
-  incomingColor: '#115', outgoingColor: "#511",
-  senderColor: '#222', timestampColor: '#555'
+  incomingBackgroundColor: '#88E', outgoingBackgroundColor: '#E88', failedBackgroundColor: '#E66',
+  incomingColor: '#115', outgoingColor: '#511',
+  senderColor: '#333', timestampColor: '#666',
+  senderFontSize: 12, timestampFontSize: 9,
+  failedAlert: 'Failed to send message!!',
+  sendButtonText: 'Send!!'
 });
 
 // send message
@@ -54,6 +57,18 @@ view.addEventListener('showinput', function(e) { console.log(e); }); // message 
 view.addEventListener('hideinput', function(e) { console.log(e); }); // message input view is shown
 view.addEventListener('send', function(e) { console.log(e); }); // send a message
 view.addEventListener('click', function(e) { console.log(e); }); // click list of messages view
+```
+
+BUILD PROCEDURE
+---------------
+
+```
+$ pod install
+$ open TiMessagesTableViewController.xcworkspace
+
+# Run "Pods" project using Release configuration on Xcode and create ./Build/Products/Release-iphoneos/libPods.a
+
+$ ./build.py # create module zip file
 ```
 
 Cheers!
