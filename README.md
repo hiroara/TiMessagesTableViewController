@@ -66,7 +66,7 @@ BUILD PROCEDURE
 $ pod install
 $ open TiMessagesTableViewController.xcworkspace
 
-# Run "Pods" project using Release configuration on Xcode and create ./Build/Products/Release-iphoneos/libPods.a
+# Run "Pods" project using Release configuration on Xcode and create ./Build/Products/Release-iphonesimulator/libPods.a
 
 $ ./build.py # create module zip file
 ```
