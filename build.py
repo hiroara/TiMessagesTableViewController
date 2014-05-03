@@ -243,7 +243,7 @@ def package_module(manifest,mf,config):
 	zip_dir(zf,'platform',modulepath,['.pyc','.js'])
 	zf.write('LICENSE','%s/LICENSE' % modulepath)
 	zf.write('module.xcconfig','%s/module.xcconfig' % modulepath)
-	zf.write('./build/Products/Release-iphoneos/libPods.a','%s/lib%s.pod.a' % (modulepath,moduleid)) # Pod library
+	zf.write('./build/Products/Release-iphonesimulator/libPods.a','%s/lib%s.pod.a' % (modulepath,moduleid)) # Pod library
 	exports_file = 'metadata.json'
 	if os.path.exists(exports_file):
 		zf.write(exports_file, '%s/%s' % (modulepath, exports_file))
