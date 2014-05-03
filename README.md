@@ -14,7 +14,7 @@ Example:
 
 ```
 <modules>
-  <module version="0.0.7" platform="iphone">com.arihiro.messagestable</module>
+  <module version="0.0.8" platform="iphone">com.arihiro.messagestable</module>
 </modules>
 ```
 
