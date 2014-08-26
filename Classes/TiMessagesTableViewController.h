@@ -35,6 +35,7 @@
 - (BOOL)hideMessageInputView;
 - (BOOL)showMessageInputView;
 - (void)setSendButtonTitle:(NSString *)title;
-- (void)resignFirstResponder;
+- (BOOL)becomeFirstResponder;
+- (BOOL)resignFirstResponder;
 
 @end

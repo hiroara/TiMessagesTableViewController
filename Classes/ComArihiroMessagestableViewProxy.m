@@ -88,6 +88,11 @@
     [[self controller] showMessageInputView];
 }
 
+- (void)focus:(id)args
+{
+    ENSURE_UI_THREAD(focus, args);
+    [[self controller] becomeFirstResponder];
+}
 - (void)blur:(id)args
 {
     ENSURE_UI_THREAD(blur, args);

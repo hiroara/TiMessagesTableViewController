@@ -237,10 +237,15 @@ BOOL isVisible;
     [self.messageInputView.sendButton setTitle:title forState:UIControlStateDisabled];
 }
 
-- (void)resignFirstResponder
+- (BOOL)becomeFirstResponder
 {
-    [self.messageInputView.textView resignFirstResponder];
+    return [self.messageInputView.textView becomeFirstResponder];
 }
+- (BOOL)resignFirstResponder
+{
+    return [self.messageInputView.textView resignFirstResponder];
+}
+
 
 #pragma mark - Table view data source
 
