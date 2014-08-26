@@ -14,7 +14,7 @@ Example:
 
 ```
 <modules>
-  <module version="0.0.8" platform="iphone">com.arihiro.messagestable</module>
+  <module version="0.0.9" platform="iphone">com.arihiro.messagestable</module>
 </modules>
 ```
 
@@ -45,6 +45,14 @@ var view = TiMessagesTableViewController.createView({
 
 // send message
 view.sendMessage({text: 'Ho-ge Ho-ge', sender: 'hiro_ari', date: new Date()});
+
+// blur and focus
+view.blur();
+view.focus();
+
+// get/set text
+view.text = 'MESSAGE! YEAH!';
+console.log(view.text);
 ```
 
 HANDLE EVENTS
