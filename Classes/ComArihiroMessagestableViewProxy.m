@@ -88,4 +88,10 @@
     [[self controller] showMessageInputView];
 }
 
+- (void)blur:(id)args
+{
+    ENSURE_UI_THREAD(blur, args);
+    [[self controller] resignFirstResponder];
+}
+
 @end

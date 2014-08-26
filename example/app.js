@@ -42,7 +42,7 @@ view.addEventListener('send', function(e) {
     setTimeout(function(){ view.success(e.messageId); }, 1000);
   } else {
     console.log("fail!");
-    setTimeout(function(){ view.failure(e.messageId); }, 1000);
+    setTimeout(function(){ view.failure(e.messageId); view.blur(); }, 1000);
   }
   count += 1;
 });
