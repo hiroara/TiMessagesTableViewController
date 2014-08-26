@@ -45,13 +45,17 @@ view.addEventListener('send', function(e) {
     setTimeout(function() {
       view.failure(e.messageId);
       view.blur();
-      setTimeout(function() { view.focus(); }, 1000);
+      setTimeout(function() {
+        view.text = 'FAILED! HAHA!!';
+        view.focus();
+      }, 1000);
     }, 1000);
   }
   count += 1;
 });
 view.addEventListener('click', function(e) {
   console.log(e);
+  console.log(view.text);
   view.showInput();
   if (e.target == "message") {
     view.removeMessage(e.messageId);

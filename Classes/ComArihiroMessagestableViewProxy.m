@@ -99,4 +99,18 @@
     [[self controller] resignFirstResponder];
 }
 
+
+- (id)text
+{
+    return [self controller].messageInputView.textView.text;
+}
+- (void)setText:(id)text
+{
+    ENSURE_UI_THREAD(setText, text);
+    ENSURE_SINGLE_ARG(text, NSString);
+    JSMessageInputView *messageInputView = [self controller].messageInputView;
+    [messageInputView.textView setText:text];
+    messageInputView.sendButton.enabled = ([[messageInputView.textView.text js_stringByTrimingWhitespace] length] > 0);
+}
+
 @end
