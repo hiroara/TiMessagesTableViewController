@@ -142,7 +142,7 @@ BOOL isVisible;
 {
     TiMessage* message = [[TiMessage alloc] initWithText:text sender:sender date:date status:status];
     [messages addObject:message];
-    [self finishSend];
+    [self.tableView reloadData];
     [self scrollToBottomAnimated:YES];
     return message;
 }
@@ -268,6 +268,7 @@ BOOL isVisible;
  */
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
     TiMessage *message = [self addMessage:text sender:sender date:date status:MSG_PENDING];
+    [self finishSend];
 
     
     NSMutableDictionary *eventObj = [message eventObject];
