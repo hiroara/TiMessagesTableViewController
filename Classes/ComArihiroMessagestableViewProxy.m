@@ -14,7 +14,12 @@
 
 - (TiMessagesTableViewController *)controller
 {
-    return [(ComArihiroMessagestableView *)[self view] controller];
+    return [[self viewWithDownCast] controller];
+}
+
+- (ComArihiroMessagestableView *)viewWithDownCast
+{
+    return (ComArihiroMessagestableView *)[super view];
 }
 
 - (void)sendMessage:(id)args

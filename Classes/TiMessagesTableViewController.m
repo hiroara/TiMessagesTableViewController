@@ -80,6 +80,7 @@ BOOL isVisible;
                               nil];
     [proxy fireEvent:@"opened" withObject:eventObj];
     isVisible = YES;
+    [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -93,6 +94,7 @@ BOOL isVisible;
                               nil];
     [proxy fireEvent:@"closed" withObject:eventObj];
     isVisible = NO;
+    [super viewWillDisappear:animated];
 }
 
 #pragma mark Handle gesture
@@ -173,7 +175,6 @@ BOOL isVisible;
     if (message == nil) {
         return NO;
     }
-    NSUInteger index = [messages indexOfObject:message];
     message.status = MSG_SUCCESS;
     [self.tableView reloadData];
     return YES;
@@ -184,8 +185,6 @@ BOOL isVisible;
     if (message == nil) {
         return NO;
     }
-    NSUInteger index = [messages indexOfObject:message];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
     message.status = MSG_FAILED;
     [self.tableView reloadData];
 

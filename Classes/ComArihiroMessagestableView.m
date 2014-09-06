@@ -16,6 +16,7 @@ TiMessagesTableViewController *controller;
 - (void)initializeState
 {
     [super initializeState];
+    [view removeFromSuperview];
     NSLog(@"[INFO] initialize %@", [self controller]);
 }
 
