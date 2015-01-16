@@ -3,9 +3,12 @@
 # Appcelerator Titanium Module Packager
 #
 #
-import os, subprocess, sys, glob, string, optparse, subprocess
+import os, subprocess, sys, glob, string, optparse, subprocess, re
 import zipfile
 from datetime import date
+
+# target = 'iphoneos'
+target = 'iphonesimulator'
 
 cwd = os.path.abspath(os.path.dirname(sys._getframe(0).f_code.co_filename))
 os.chdir(cwd)
@@ -243,7 +246,12 @@ def package_module(manifest,mf,config):
 	zip_dir(zf,'platform',modulepath,['.pyc','.js'])
 	zf.write('LICENSE','%s/LICENSE' % modulepath)
 	zf.write('module.xcconfig','%s/module.xcconfig' % modulepath)
-	zf.write('./build/Products/Release-iphonesimulator/libPods.a','%s/lib%s.pod.a' % (modulepath,moduleid)) # Pod library
+
+	# copy Pod libraries
+	for lib in glob.glob('./build/Products/Release-%s/libPods*.a' % (target)):
+		name = re.match('.*libPods(.*)\.a', lib).group(1)
+		zf.write(lib, '%s/lib%s%s.pod.a' % (modulepath, moduleid, name))
+
 	exports_file = 'metadata.json'
 	if os.path.exists(exports_file):
 		zf.write(exports_file, '%s/%s' % (modulepath, exports_file))

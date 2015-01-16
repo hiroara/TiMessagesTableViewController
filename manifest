@@ -15,4 +15,4 @@ name: TiMessagesTableViewController
 moduleid: com.arihiro.messagestable
 guid: 1797cf60-0a95-490c-8879-061bf1ee1b8f
 platform: iphone
-minsdk: 3.2.2.GA
+minsdk: 3.4.1.GA

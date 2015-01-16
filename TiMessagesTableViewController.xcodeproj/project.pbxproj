@@ -57,9 +57,10 @@
 		24DD6D1B1134B66800162E58 /* titanium.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = titanium.xcconfig; sourceTree = "<group>"; };
 		24DE9E0F11C5FE74003F90F6 /* ComArihiroMessagestableModuleAssets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ComArihiroMessagestableModuleAssets.h; path = Classes/ComArihiroMessagestableModuleAssets.h; sourceTree = "<group>"; };
 		24DE9E1011C5FE74003F90F6 /* ComArihiroMessagestableModuleAssets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ComArihiroMessagestableModuleAssets.m; path = Classes/ComArihiroMessagestableModuleAssets.m; sourceTree = "<group>"; };
-		7ADA6CC60F104234946FBBA2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		6ADEC9F8905D801C9BDF7B17 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A3FE78EC18FAC77300CEADBE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A3FE78EE18FAC77B00CEADBE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A7831AC047BEF591D913507C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		AA747D9E0F9514B9006C5449 /* ComArihiroMessagestable_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComArihiroMessagestable_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CCFE22445B934A5BB2B3DFCE /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libPods.a; path = "Build/Products/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
@@ -101,7 +102,7 @@
 				F55C3D1818FD93F70021AB8C /* TiMessagesTableViewController Bundle */,
 				F5178AB118FD865600794754 /* Products */,
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
-				7ADA6CC60F104234946FBBA2 /* Pods.xcconfig */,
+				B1692CB63683F1E949A5A3C8 /* Pods */,
 			);
 			name = TiMessagesTableViewController;
 			sourceTree = "<group>";
@@ -146,6 +147,15 @@
 				24DD6D1B1134B66800162E58 /* titanium.xcconfig */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		B1692CB63683F1E949A5A3C8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A7831AC047BEF591D913507C /* Pods.debug.xcconfig */,
+				6ADEC9F8905D801C9BDF7B17 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		F5178AB118FD865600794754 /* Products */ = {
@@ -269,7 +279,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D8FD722CBF9C4387A3D3D0E2 /* Check Pods Manifest.lock */ = {
@@ -328,9 +338,13 @@
 /* Begin XCBuildConfiguration section */
 		1DEB921F08733DC00010E9CD /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7ADA6CC60F104234946FBBA2 /* Pods.xcconfig */;
+			baseConfigurationReference = A7831AC047BEF591D913507C /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					i386,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -371,14 +385,19 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(TITANIUM_HEADER_SEARCH_PATHS) ${PODS_ROOT}/Headers ${PODS_ROOT}/Headers/JSQSystemSoundPlayer ${PODS_ROOT}/Headers/JSMessagesViewController";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Debug;
 		};
 		1DEB922008733DC00010E9CD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7ADA6CC60F104234946FBBA2 /* Pods.xcconfig */;
+			baseConfigurationReference = 6ADEC9F8905D801C9BDF7B17 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					i386,
+				);
 				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/ComArihiroMessagestable.dst;
 				GCC_C_LANGUAGE_STANDARD = c99;
@@ -413,6 +432,7 @@
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "$(TITANIUM_HEADER_SEARCH_PATHS) ${PODS_ROOT}/Headers ${PODS_ROOT}/Headers/JSQSystemSoundPlayer ${PODS_ROOT}/Headers/JSMessagesViewController";
+				VALID_ARCHS = "arm64 armv7 armv7s i386";
 			};
 			name = Release;
 		};

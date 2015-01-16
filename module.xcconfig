@@ -10,7 +10,7 @@
 //
 // How to add a Framework (example)
 //
-OTHER_LDFLAGS=$(inherited) -lcom.arihiro.messagestable.pod -framework QuartzCore -framework AudioToolbox
+OTHER_LDFLAGS=$(inherited) -lcom.arihiro.messagestable.pod -lcom.arihiro.messagestable-JSMessagesViewController.pod -lcom.arihiro.messagestable-JSQSystemSoundPlayer.pod -framework QuartzCore -framework AudioToolbox
 //
 // Adding a framework for a specific version(s) of iPhone:
 //
