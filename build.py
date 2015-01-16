@@ -7,9 +7,6 @@ import os, subprocess, sys, glob, string, optparse, subprocess, re
 import zipfile
 from datetime import date
 
-# target = 'iphoneos'
-target = 'iphonesimulator'
-
 cwd = os.path.abspath(os.path.dirname(sys._getframe(0).f_code.co_filename))
 os.chdir(cwd)
 required_module_keys = ['name','version','moduleid','description','copyright','license','copyright','platform','minsdk']
@@ -248,9 +245,9 @@ def package_module(manifest,mf,config):
 	zf.write('module.xcconfig','%s/module.xcconfig' % modulepath)
 
 	# copy Pod libraries
-	for lib in glob.glob('./build/Products/Release-%s/libPods*.a' % (target)):
+	for lib in glob.glob('./build/libPods*.a'):
 		name = re.match('.*libPods(.*)\.a', lib).group(1)
-		zf.write(lib, '%s/lib%s%s.pod.a' % (modulepath, moduleid, name))
+		zf.write(lib, '%s/lib%s.pod%s.a' % (modulepath, moduleid, name))
 
 	exports_file = 'metadata.json'
 	if os.path.exists(exports_file):

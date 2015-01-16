@@ -2,8 +2,11 @@
 
 set -e
 
+python build_fat_lib.py
+echo
+
 echo "Now creating example project..."
-BUILD_DIR=`$HOME'/Library/Application Support/Titanium/mobilesdk/osx/3.4.1.GA/titanium.py' run | grep "\\[DEBUG\\] Staging module project at" | awk '{ print $6 }'`
+BUILD_DIR=`$HOME'/Library/Application Support/Titanium/mobilesdk/osx/3.5.0.GA/titanium.py' run | grep "\\[DEBUG\\] Staging module project at" | awk '{ print $6 }'`
 BUILD_DIR=${BUILD_DIR}/`ls ${BUILD_DIR} | tail -n 1`
 echo "Example project has built at ${EXAMPLE_DIR}"
 
