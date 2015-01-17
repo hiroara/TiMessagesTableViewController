@@ -105,6 +105,12 @@ TiMessagesTableViewController *controller;
     [self controller].timestampFont = [UIFont systemFontOfSize:((NSNumber *)argSize).floatValue];
 }
 
+- (void)setTimestampFormat_:(id)argFormat
+{
+    ENSURE_SINGLE_ARG(argFormat, NSString);
+    [[self controller].dateFormatter setDateFormat:(NSString *)argFormat];
+}
+
 - (void)setFailedAlert_:(id)alert
 {
     ENSURE_SINGLE_ARG(alert, NSString);

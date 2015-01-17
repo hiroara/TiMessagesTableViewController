@@ -27,6 +27,7 @@
 @property (nonatomic, strong) UIColor *timestampColor;
 @property (nonatomic, strong) UIFont *timestampFont;
 @property (nonatomic, strong) NSString *failedAlert;
+@property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
 - (TiMessage *)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date status:(MSG_STATUS_ENUM)status;
 - (NSUInteger)removeMessageWithMessageID:(NSUInteger)index;

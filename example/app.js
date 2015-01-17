@@ -14,6 +14,7 @@ var view = TiMessagesTableViewController.createView({
   incomingColor: '#115', outgoingColor: '#511',
   senderColor: '#333', timestampColor: '#666',
   senderFontSize: 12, timestampFontSize: 9,
+  timestampFormat: 'MMM dd yyyy HH:mm:ss',
   failedAlert: 'Failed to send message!!',
   sendButtonText: 'Send!!'
 });

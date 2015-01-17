@@ -28,6 +28,7 @@ ComArihiroMessagestableModule *proxy;
 @synthesize timestampColor;
 @synthesize timestampFont;
 @synthesize failedAlert;
+@synthesize dateFormatter;
 
 CGRect originalTableViewFrame;
 BOOL isVisible;
@@ -48,6 +49,10 @@ BOOL isVisible;
     timestampColor = [UIColor lightGrayColor];
     failedAlert = @"failed to send.";
 
+    dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setDateStyle:NSDateFormatterNoStyle];
+    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
 
     [super viewDidLoad];
 
@@ -365,9 +370,7 @@ BOOL isVisible;
         if (message.status == MSG_FAILED) {
             cell.timestampLabel.text = failedAlert;
         } else {
-            cell.timestampLabel.text = [NSDateFormatter localizedStringFromDate:timestamp
-                                                                      dateStyle:NSDateFormatterNoStyle
-                                                                      timeStyle:NSDateFormatterShortStyle];
+            cell.timestampLabel.text = [dateFormatter stringFromDate:timestamp];
         }
     }
     
