@@ -12,4 +12,4 @@ for key, group in itertools.groupby(sorted(libs, key=first), first):
     print 'Run: %s' % cmd
     if os.system(cmd): raise Exception('Command failed: %s' % cmd)
 
-print '\nAll processes is completed!'
+print '\nAll fat libs are created successfully!'
