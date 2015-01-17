@@ -29,7 +29,7 @@
 @property (nonatomic, strong) NSString *failedAlert;
 @property (nonatomic, strong) NSDateFormatter *dateFormatter;
 
-- (TiMessage *)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date status:(MSG_STATUS_ENUM)status;
+- (void)addMessage:(TiMessage *)message;
 - (NSUInteger)removeMessageWithMessageID:(NSUInteger)index;
 - (BOOL)succeedInSendingMessageWithMessageID:(NSInteger)messageId;
 - (BOOL)failInSendingMessageWithMessageID:(NSInteger)messageId;

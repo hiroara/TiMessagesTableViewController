@@ -22,9 +22,8 @@
     return (ComArihiroMessagestableView *)[super view];
 }
 
-- (void)sendMessage:(id)args
+- (id)sendMessage:(id)args
 {
-    ENSURE_UI_THREAD(sendMessage, args);
     ENSURE_SINGLE_ARG(args, NSDictionary);
 
     NSString *text;
@@ -51,7 +50,13 @@
         status = MSG_PENDING;
     }
 
-    [[self controller] addMessage:text sender:sender date:date status:status];
+    TiMessage* message = [[TiMessage alloc] initWithText:text sender:sender date:date status:status];
+    if (![NSThread isMainThread]) {
+        TiThreadPerformOnMainThread(^{[[self controller] addMessage:message];},NO);
+    } else {
+        [[self controller] addMessage:message];
+    }
+    return [message eventObject];
 }
 - (void)removeMessage:(id)messageId
 {

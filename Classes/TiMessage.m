@@ -53,13 +53,12 @@ static unsigned int currentMessageId = 1000;
             statusText = @"failed";
             break;
     }
-    NSMutableDictionary *eventObj = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-                                     [NSNumber numberWithInteger:_messageId], @"messageId",
-                                     self.text, @"text",
-                                     self.sender, @"sender",
-                                     self.date, @"date",
-                                     statusText, @"status",
-                                     nil];
+    NSMutableDictionary *eventObj = [NSMutableDictionary dictionaryWithCapacity:5];
+    [eventObj setValue:[NSNumber numberWithInteger:_messageId] forKey:@"messageId"];
+    [eventObj setValue:self.text forKey:@"text"];
+    [eventObj setValue:self.sender forKey:@"sender"];
+    [eventObj setValue:self.date forKey:@"date"];
+    [eventObj setValue:statusText forKey:@"status"];
     return eventObj;
 }
 
