@@ -145,14 +145,13 @@ BOOL isVisible;
     return message;
 }
 
-- (TiMessage *)addMessage:(NSString *)text sender:(NSString *)sender date:(NSDate *)date status:(MSG_STATUS_ENUM)status
+-(void)addMessage:(TiMessage *)message
 {
-    TiMessage* message = [[TiMessage alloc] initWithText:text sender:sender date:date status:status];
     [messages addObject:message];
     [self.tableView reloadData];
     [self scrollToBottomAnimated:YES];
-    return message;
 }
+
 - (NSUInteger)removeMessageWithMessageID:(NSUInteger)messageId
 {
     TiMessage* message = [self getMessageWithMessageId:messageId];
@@ -271,7 +270,9 @@ BOOL isVisible;
  *  @param date   The date and time at which the message was sent.
  */
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
-    TiMessage *message = [self addMessage:text sender:sender date:date status:MSG_PENDING];
+    TiMessage* message = [[TiMessage alloc] initWithText:text sender:sender date:date status:MSG_PENDING];
+    [self addMessage:message];
+
     [self finishSend];
 
     

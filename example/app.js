@@ -64,7 +64,8 @@ view.addEventListener('click', function(e) {
 });
 
 // send message programmatically
-view.sendMessage({text: 'Ho-ge Ho-ge', sender: 'hiro_ari'});
+var msg = view.sendMessage({text: 'Ho-ge Ho-ge', sender: 'hiro_ari'});
+console.log(JSON.stringify(msg)); // can get informations of the message
 
 win.open();
 setTimeout(function(){
