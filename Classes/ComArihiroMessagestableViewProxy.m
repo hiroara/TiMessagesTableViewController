@@ -7,6 +7,7 @@
 #import "ComArihiroMessagestableViewProxy.h"
 #import "ComArihiroMessagestableView.h"
 #import "TiUtils.h"
+#import "TiViewProxy.h"
 #import "NSString+JSMessagesView.h"
 #import "TiMessagesTableViewController.h"
 
@@ -30,8 +31,9 @@
     NSString *sender;
     NSDate *date = [args objectForKey:@"date"];
     NSString *statusStr = [args objectForKey:@"status"];
+    TiViewProxy *subviewProxy = [args objectForKey:@"view"];
 
-    ENSURE_ARG_FOR_KEY(text, args, @"text", NSString);
+    ENSURE_ARG_OR_NIL_FOR_KEY(text, args, @"text", NSString);
     ENSURE_ARG_FOR_KEY(sender, args, @"sender", NSString);
 
     if ([args objectForKey:@"date"] == nil) {
@@ -50,7 +52,7 @@
         status = MSG_PENDING;
     }
 
-    TiMessage* message = [[TiMessage alloc] initWithText:text sender:sender date:date status:status];
+    TiMessage* message = [[TiMessage alloc] initWithText:text sender:sender date:date status:status subview:subviewProxy];
     if (![NSThread isMainThread]) {
         TiThreadPerformOnMainThread(^{[[self controller] addMessage:message];},NO);
     } else {

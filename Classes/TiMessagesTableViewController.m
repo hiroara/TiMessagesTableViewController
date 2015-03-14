@@ -9,8 +9,10 @@
 #import "TiMessagesTableViewController.h"
 #import "TiMessage.h"
 #import "TiBubbleImagesViewFactory.h"
+#import "JSBubbleView+Ti.h"
 #import "ComArihiroMessagestableModule.h"
 #import "ComArihiroMessagestableViewProxy.h"
+#import <JSMessagesViewController/NSString+JSMessagesView.h>
 
 ComArihiroMessagestableModule *proxy;
 
@@ -270,7 +272,7 @@ BOOL isVisible;
  *  @param date   The date and time at which the message was sent.
  */
 - (void)didSendText:(NSString *)text fromSender:(NSString *)sender onDate:(NSDate *)date {
-    TiMessage* message = [[TiMessage alloc] initWithText:text sender:sender date:date status:MSG_PENDING];
+    TiMessage* message = [[TiMessage alloc] initWithText:text sender:sender date:date status:MSG_PENDING subview:nil];
     [self addMessage:message];
 
     [self finishSend];
@@ -359,6 +361,8 @@ BOOL isVisible;
         }
     }
 
+    cell.bubbleView.messageSubview = message.subview;
+
     if (cell.timestampLabel) {
         if (timestampFont != nil) {
             cell.timestampLabel.font = timestampFont;
@@ -392,7 +396,8 @@ BOOL isVisible;
         [cell.bubbleView addGestureRecognizer:tap];
         [tap addTarget:self action:@selector(handleTapGestureRecognizer:)];
     }
-
+    
+    message.cell = cell;
     
 #if TARGET_IPHONE_SIMULATOR
     cell.bubbleView.textView.dataDetectorTypes = UIDataDetectorTypeNone;
@@ -464,5 +469,19 @@ BOOL isVisible;
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat height = [super tableView:tableView heightForRowAtIndexPath:indexPath];
+    TiMessage *msg = (TiMessage *)[messages objectAtIndex:indexPath.row];
+
+    if (msg.text == nil || [[msg.text js_stringByTrimingWhitespace] length] == 0) {
+        height -= 24;
+    }
+    if (msg.cell != nil && msg.cell.bubbleView.messageSubview != nil) {
+        height += [msg.cell.bubbleView neededSizeForSubview].height;
+    }
+    
+    return height;
+}
 
 @end

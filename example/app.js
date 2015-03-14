@@ -73,6 +73,12 @@ setTimeout(function(){
   setTimeout(function(){
     view.sendMessage({text: 'Barrrrrrrr', sender: 'ari_hiro', date: (new Date(new Date().getTime() - 1 * 60 * 60 * 1000)), status: 'success'});
     view.sendMessage({text: 'Foo Foooo!!!', sender: 'hiro_ari'});
+
+    // use subview
+    var subview1 = Ti.UI.createImageView({image: 'http://i.giphy.com/dWm5HKuKjZTO.gif', width: 100, height: 100, top: 30, left: 30, bottom: 30, right: 30});
+    view.sendMessage({sender: 'hiro_ari', view: subview1});
+    var subview2 = Ti.UI.createButton({title: 'Hello!', top: 0, right: 0, width: 100, height: 20, backgroundColor: 'red'});
+    view.sendMessage({text: 'Hi! This is my cooool button!', sender: 'ari_hiro', view: subview2});
     win.open();
   }, 2000);
 }, 2000);
