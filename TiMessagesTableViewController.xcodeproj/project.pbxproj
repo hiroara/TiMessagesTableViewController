@@ -37,6 +37,8 @@
 		F54220FF18F993A20036F690 /* TiMessagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F54220FD18F993A20036F690 /* TiMessagesTableViewController.m */; };
 		F5A3F35E190CA66E0027C0DD /* TiMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = F5A3F35C190CA66E0027C0DD /* TiMessage.h */; };
 		F5A3F35F190CA66E0027C0DD /* TiMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = F5A3F35D190CA66E0027C0DD /* TiMessage.m */; };
+		F5EE2AD61AAC358000455510 /* JSBubbleView+Ti.h in Headers */ = {isa = PBXBuildFile; fileRef = F5EE2AD41AAC358000455510 /* JSBubbleView+Ti.h */; };
+		F5EE2AD71AAC358000455510 /* JSBubbleView+Ti.m in Sources */ = {isa = PBXBuildFile; fileRef = F5EE2AD51AAC358000455510 /* JSBubbleView+Ti.m */; };
 		F5F76D5E19024731000B83F1 /* TiBubbleImagesViewFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = F5F76D5C19024731000B83F1 /* TiBubbleImagesViewFactory.h */; };
 		F5F76D5F19024731000B83F1 /* TiBubbleImagesViewFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F76D5D19024731000B83F1 /* TiBubbleImagesViewFactory.m */; };
 /* End PBXBuildFile section */
@@ -77,6 +79,8 @@
 		F55C3D1E18FD93F70021AB8C /* TiMessagesTableViewController Bundle-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TiMessagesTableViewController Bundle-Prefix.pch"; sourceTree = "<group>"; };
 		F5A3F35C190CA66E0027C0DD /* TiMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiMessage.h; path = Classes/TiMessage.h; sourceTree = "<group>"; };
 		F5A3F35D190CA66E0027C0DD /* TiMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiMessage.m; path = Classes/TiMessage.m; sourceTree = "<group>"; };
+		F5EE2AD41AAC358000455510 /* JSBubbleView+Ti.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "JSBubbleView+Ti.h"; path = "Classes/JSBubbleView+Ti.h"; sourceTree = "<group>"; };
+		F5EE2AD51AAC358000455510 /* JSBubbleView+Ti.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "JSBubbleView+Ti.m"; path = "Classes/JSBubbleView+Ti.m"; sourceTree = "<group>"; };
 		F5F76D5C19024731000B83F1 /* TiBubbleImagesViewFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TiBubbleImagesViewFactory.h; path = Classes/TiBubbleImagesViewFactory.h; sourceTree = "<group>"; };
 		F5F76D5D19024731000B83F1 /* TiBubbleImagesViewFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TiBubbleImagesViewFactory.m; path = Classes/TiBubbleImagesViewFactory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +140,8 @@
 				F5F76D5D19024731000B83F1 /* TiBubbleImagesViewFactory.m */,
 				F5A3F35C190CA66E0027C0DD /* TiMessage.h */,
 				F5A3F35D190CA66E0027C0DD /* TiMessage.m */,
+				F5EE2AD41AAC358000455510 /* JSBubbleView+Ti.h */,
+				F5EE2AD51AAC358000455510 /* JSBubbleView+Ti.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -191,6 +197,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5EE2AD61AAC358000455510 /* JSBubbleView+Ti.h in Headers */,
 				AA747D9F0F9514B9006C5449 /* ComArihiroMessagestable_Prefix.pch in Headers */,
 				F54220FA18F9900A0036F690 /* ComArihiroMessagestableViewProxy.h in Headers */,
 				24DD6CF91134B3F500162E58 /* ComArihiroMessagestableModule.h in Headers */,
@@ -304,6 +311,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5EE2AD71AAC358000455510 /* JSBubbleView+Ti.m in Sources */,
 				F54220F918F9900A0036F690 /* ComArihiroMessagestableView.m in Sources */,
 				F54220FF18F993A20036F690 /* TiMessagesTableViewController.m in Sources */,
 				F5F76D5F19024731000B83F1 /* TiBubbleImagesViewFactory.m in Sources */,

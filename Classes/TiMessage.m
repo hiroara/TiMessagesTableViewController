@@ -12,6 +12,8 @@
 
 @synthesize status = _status;
 @synthesize messageId = _messageId;
+@synthesize subview = _subview;
+@synthesize cell = _cell;
 
 static unsigned int currentMessageId = 1000;
 
@@ -23,10 +25,11 @@ static unsigned int currentMessageId = 1000;
     return newId;
 }
 
-- (instancetype)initWithText:(NSString *)text sender:(NSString *)sender date:(NSDate *)date status:(MSG_STATUS_ENUM)status
+- (instancetype)initWithText:(NSString *)text sender:(NSString *)sender date:(NSDate *)date status:(MSG_STATUS_ENUM)status subview:(TiViewProxy *)subview
 {
     self = [self initWithText:text sender:sender date:date];
     _status = status;
+    _subview = subview;
     return self;
 }
 - (instancetype)initWithText:(NSString *)text

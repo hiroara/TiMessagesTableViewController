@@ -49,6 +49,10 @@ var msg = view.sendMessage({text: 'Ho-ge Ho-ge', sender: 'hiro_ari', date: new D
 
 console.log(JSON.stringify(msg)); // can get informations of the message
 
+// display subview (e.g. ImageView)
+var subview = Ti.UI.createImageView({image: 'http://i.giphy.com/dWm5HKuKjZTO.gif', width: 100, height: 100, top: 30, left: 30, bottom: 30, right: 30});
+view.sendMessage({text: 'Hi! This is animated GIF!', sender: 'ari_hiro', view: subview});
+
 // blur and focus
 view.blur();
 view.focus();
